@@ -1,0 +1,3 @@
+package com.openclassrooms.realestatemanager.repository.property
+
+interface PropertyRepository
