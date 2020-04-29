@@ -5,15 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.ui.propertyList.model.DummyContent.DummyItem
+import com.openclassrooms.realestatemanager.ui.propertyList.model.UiProperty
 import kotlinx.android.synthetic.main.item_property_list.view.*
 
 class PropertyAdapter(val action: (String) -> (Unit)) :
     RecyclerView.Adapter<PropertyAdapter.DummyHolder>() {
 
-    private var data = listOf<DummyItem>()
+    private var data = listOf<UiProperty>()
 
-    fun setData(data: List<DummyItem>) {
+    fun setData(data: List<UiProperty>) {
         this.data = data
         notifyDataSetChanged()
     }
@@ -31,11 +31,15 @@ class PropertyAdapter(val action: (String) -> (Unit)) :
     override fun getItemCount(): Int = data.size
 
     inner class DummyHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(item: DummyItem) {
-            view.content.text = item.content
-            view.item_number.text = item.id
-            view.setOnClickListener {
-                action(item.id)
+        fun bind(item: UiProperty) {
+
+            view.run{
+                tvPropertyType.text = item.type
+                tvPropertyLocation.text = item.location
+                tvPropertyPrice.text = item.price
+                setOnClickListener {
+                    action(item.id)
+                }
             }
         }
     }

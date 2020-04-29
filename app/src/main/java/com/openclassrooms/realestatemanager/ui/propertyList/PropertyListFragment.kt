@@ -5,8 +5,7 @@ import android.view.*
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.BaseToolbarFragment
 import com.openclassrooms.realestatemanager.ui.propertyList.adapter.PropertyAdapter
-import com.openclassrooms.realestatemanager.ui.propertyList.model.DummyContent
-import dagger.android.support.DaggerFragment
+import com.openclassrooms.realestatemanager.ui.propertyList.model.UiProperty
 import kotlinx.android.synthetic.main.fragment_property_list.*
 import javax.inject.Inject
 
@@ -40,7 +39,7 @@ class PropertyListFragment : BaseToolbarFragment(), PropertyListView {
         presenter.onViewCreated()
     }
 
-    override fun setData(data: List<DummyContent.DummyItem>) {
+    override fun setData(data: List<UiProperty>) {
         adapter.setData(data)
     }
 }

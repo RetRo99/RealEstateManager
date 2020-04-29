@@ -46,6 +46,11 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="actionToSearch">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                           </map>
                         </option>
                       </LayoutPositions>
@@ -67,12 +72,29 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="actionToSearch">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_navigation_map_to_propertyDetailsFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="navigation_search">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -84,18 +106,6 @@
                           <Point>
                             <option name="x" value="183" />
                             <option name="y" value="381" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="propertySearchFragment">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="338" />
-                            <option name="y" value="-448" />
                           </Point>
                         </option>
                       </LayoutPositions>
