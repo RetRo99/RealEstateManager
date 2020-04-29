@@ -92,12 +92,7 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        if(item.itemId == R.id.navigation_add) {
-            item.onNavDestinationSelected(getNavController())
-            return true
-        }
-        return super.onOptionsItemSelected(item)
+        return item.onNavDestinationSelected(getNavController()) || super.onOptionsItemSelected(item)
     }
 
 }

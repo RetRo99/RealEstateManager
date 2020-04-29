@@ -9,13 +9,16 @@
         android:id="@+id/navigation_list"
         android:name="com.openclassrooms.realestatemanager.ui.propertyList.PropertyListFragment"
         android:label="Real Estate Manager"
-        tools:layout="@layout/fragment_property_list" >
+        tools:layout="@layout/fragment_property_list">
         <action
             android:id="@+id/actionToDetails"
             app:destination="@id/propertyDetailsFragment" />
         <action
             android:id="@+id/actionToAdd"
             app:destination="@id/navigation_add" />
+        <action
+            android:id="@+id/actionToSearch"
+            app:destination="@id/navigation_search" />
     </fragment>
     <fragment
         android:id="@+id/propertyDetailsFragment"
@@ -29,13 +32,16 @@
     <fragment
         android:id="@+id/navigation_map"
         android:name="com.openclassrooms.realestatemanager.ui.map.MapFragment"
-        android:label="Map" >
+        android:label="Map">
         <action
             android:id="@+id/action_navigation_map_to_propertyDetailsFragment"
             app:destination="@id/propertyDetailsFragment" />
         <action
             android:id="@+id/actionToAdd"
             app:destination="@id/navigation_add" />
+        <action
+            android:id="@+id/actionToSearch"
+            app:destination="@id/navigation_search" />
     </fragment>
     <action
         android:id="@+id/actionToDetails"
@@ -45,4 +51,8 @@
         android:name="com.openclassrooms.realestatemanager.ui.propertyAdd.PropertyAddFragment"
         android:label="Add property"
         tools:layout="@layout/fragment_property_add" />
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.openclassrooms.realestatemanager.ui.searchProperty.PropertySearchFragment"
+        android:label="PropertySearchFragment"/>
 </navigation>

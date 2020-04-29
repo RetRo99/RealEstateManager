@@ -15,11 +15,12 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.base.BaseSearchAndAddFragment
+import com.openclassrooms.realestatemanager.base.BaseToolbarFragment
 import com.openclassrooms.realestatemanager.ui.map.model.UiMarkerModel
+import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class MapFragment : BaseSearchAndAddFragment(), MapView,
+class MapFragment : BaseToolbarFragment(), MapView,
     OnMapReadyCallback {
 
     private lateinit var googleMap: GoogleMap
@@ -34,6 +35,8 @@ class MapFragment : BaseSearchAndAddFragment(), MapView,
     ): View? {
         return inflater.inflate(R.layout.fragment_map_view, container, false)
     }
+
+    override fun provideMenuRes(): Int = R.menu.top_search_add
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

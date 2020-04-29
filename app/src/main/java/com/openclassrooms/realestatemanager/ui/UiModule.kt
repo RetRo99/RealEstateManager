@@ -8,6 +8,8 @@ import com.openclassrooms.realestatemanager.ui.propertyDetails.PropertyDetailsFr
 import com.openclassrooms.realestatemanager.ui.propertyDetails.PropertyDetailsModule
 import com.openclassrooms.realestatemanager.ui.propertyList.PropertyListFragment
 import com.openclassrooms.realestatemanager.ui.propertyList.PropertyListModule
+import com.openclassrooms.realestatemanager.ui.searchProperty.PropertySearchFragment
+import com.openclassrooms.realestatemanager.ui.searchProperty.PropertySearchModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -25,5 +27,8 @@ internal interface UiModule {
 
     @ContributesAndroidInjector(modules = [PropertyAddModule::class])
     fun contribPropertyAddFragmentInjector(): PropertyAddFragment
+
+    @ContributesAndroidInjector(modules = [PropertySearchModule::class])
+    fun contribPropertySearchFragmentInjector(): PropertySearchFragment
 
 }
