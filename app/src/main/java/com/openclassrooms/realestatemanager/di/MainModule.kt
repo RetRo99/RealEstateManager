@@ -1,15 +1,13 @@
 package com.openclassrooms.realestatemanager.di
 
+import com.openclassrooms.realestatemanager.manager.ManagerModule
+import com.openclassrooms.realestatemanager.repository.RepositoryModule
 import dagger.Module
 
 
 @Module(
-//    includes = [
-//                  ManagerModule::class,
-//            RepositoryModule::class,
-//            RetrofitModule::class,
-//            MapperModule::class,
-//            NotificationServiceModule::class
-//
-//    ]
+    includes = [
+        RepositoryModule::class,
+        ManagerModule::class
+    ]
 )class MainModule

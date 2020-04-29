@@ -1,5 +1,9 @@
 package com.openclassrooms.realestatemanager.ui
 
+import com.openclassrooms.realestatemanager.ui.map.MapFragment
+import com.openclassrooms.realestatemanager.ui.map.MapModule
+import com.openclassrooms.realestatemanager.ui.propertyDetails.PropertyDetailsFragment
+import com.openclassrooms.realestatemanager.ui.propertyDetails.PropertyDetailsModule
 import com.openclassrooms.realestatemanager.ui.propertyList.PropertyListFragment
 import com.openclassrooms.realestatemanager.ui.propertyList.PropertyListModule
 import dagger.Module
@@ -9,6 +13,12 @@ import dagger.android.ContributesAndroidInjector
 internal interface UiModule {
 
     @ContributesAndroidInjector(modules = [PropertyListModule::class])
-    fun contributeMapFragmentInjector(): PropertyListFragment
+    fun contributePropertyListFragmentInjector(): PropertyListFragment
+
+    @ContributesAndroidInjector(modules = [PropertyDetailsModule::class])
+    fun contributePropertyDetailsFragmentInjector(): PropertyDetailsFragment
+
+    @ContributesAndroidInjector(modules = [MapModule::class])
+    fun contributeMapFragmentInjector(): MapFragment
 
 }

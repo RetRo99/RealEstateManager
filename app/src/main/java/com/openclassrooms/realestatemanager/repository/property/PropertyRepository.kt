@@ -1,3 +1,8 @@
 package com.openclassrooms.realestatemanager.repository.property
 
-interface PropertyRepository
+import com.openclassrooms.realestatemanager.ui.propertyList.model.DummyContent
+
+interface PropertyRepository{
+
+    fun getProperties():List<DummyContent.DummyItem>
+}

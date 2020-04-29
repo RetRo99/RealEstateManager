@@ -1,10 +1,11 @@
 package com.openclassrooms.realestatemanager.repository
 
+import com.openclassrooms.realestatemanager.repository.property.PropertyRepositoryModule
 import dagger.Module
 
 @Module(
     includes = [
-        RestaurantsRepositoryModule::class,
+        PropertyRepositoryModule::class
     ]
 )
 class RepositoryModule

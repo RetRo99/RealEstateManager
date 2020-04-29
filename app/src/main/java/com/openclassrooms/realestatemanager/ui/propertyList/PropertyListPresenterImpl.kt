@@ -1,14 +1,22 @@
 package com.openclassrooms.realestatemanager.ui.propertyList
 
-import com.openclassrooms.realestatemanager.ui.propertyList.model.DummyContent
+import com.openclassrooms.realestatemanager.repository.property.PropertyRepository
+import com.openclassrooms.realestatemanager.ui.MainViewPresenter
 import javax.inject.Inject
 
 class PropertyListPresenterImpl @Inject constructor(
-    private val view: PropertyListView ): PropertyListPresenter {
+    private val view: PropertyListView,
+    private val propertyRepository: PropertyRepository,
+    private val parentPresenter: MainViewPresenter
+
+): PropertyListPresenter {
 
     override fun onViewCreated() {
+        view.setData(propertyRepository.getProperties())
+    }
 
-        view.setData(DummyContent.ITEMS)
+    override fun onProperyClicked(id:String){
+        parentPresenter.onPropertyClicked(id)
     }
 
 }

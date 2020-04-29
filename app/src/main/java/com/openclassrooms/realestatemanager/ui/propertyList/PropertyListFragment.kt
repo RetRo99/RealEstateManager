@@ -29,9 +29,11 @@ class PropertyListFragment : DaggerFragment(), PropertyListView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = PropertyAdapter()
-        rvPropertyList.adapter = adapter
+        adapter = PropertyAdapter{
+            presenter.onProperyClicked(it)
+        }
 
+        rvPropertyList.adapter = adapter
 
         presenter.onViewCreated()
     }

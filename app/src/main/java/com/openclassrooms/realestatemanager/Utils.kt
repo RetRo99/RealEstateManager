@@ -1,8 +1,10 @@
 package com.openclassrooms.realestatemanager
 
 import android.content.Context
+import android.location.Location
 import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
+import com.google.android.gms.maps.model.LatLng
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -53,5 +55,11 @@ object Utils {
         val activeNetworkInfo = connectivityManager.activeNetworkInfo
         return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
+
+    fun getLatLng(location:Location): LatLng {
+        return LatLng(location.latitude, location.longitude)
+    }
+
+
 
 }
