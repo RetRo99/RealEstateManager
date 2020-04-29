@@ -13,6 +13,9 @@
         <action
             android:id="@+id/actionToDetails"
             app:destination="@id/propertyDetailsFragment" />
+        <action
+            android:id="@+id/actionToAdd"
+            app:destination="@id/navigation_add" />
     </fragment>
     <fragment
         android:id="@+id/propertyDetailsFragment"
@@ -30,8 +33,16 @@
         <action
             android:id="@+id/action_navigation_map_to_propertyDetailsFragment"
             app:destination="@id/propertyDetailsFragment" />
+        <action
+            android:id="@+id/actionToAdd"
+            app:destination="@id/navigation_add" />
     </fragment>
     <action
         android:id="@+id/actionToDetails"
         app:destination="@id/propertyDetailsFragment" />
+    <fragment
+        android:id="@+id/navigation_add"
+        android:name="com.openclassrooms.realestatemanager.ui.propertyAdd.PropertyAddFragment"
+        android:label="Add property"
+        tools:layout="@layout/fragment_property_add" />
 </navigation>
