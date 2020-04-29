@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Real Estate Manager</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_map">Map</string>
     <string name="menu_list">List</string>
     <string name="dialog_permission_title">Permission to access location is needed for the app to work.</string>
@@ -11,4 +9,28 @@
     <string name="dialog_exit">EXIT</string>
     <string name="menu_search">Search</string>
     <string name="menu_add">Add</string>
+    <string-array name="property_type_array">
+        <item>Apartment</item>
+        <item>House</item>
+        <item>Studio</item>
+    </string-array>
+    <string name="fragment_add_hobbies">hobbies</string>
+    <string name="fragment_add_doctor">doctor</string>
+    <string name="fragment_add_public_transport">Public transport</string>
+    <string name="fragment_add_stores">Stores</string>
+    <string name="fragment_add_park">Park</string>
+    <string name="fragment_add_school">School</string>
+    <string name="fragment_add_add_photo">Add Photo</string>
+    <string name="fragment_add_street">Street</string>
+    <string name="fragment_add_describe_the_property">Describe property</string>
+    <string name="fragment_add_number_of_rooms">Number of Rooms</string>
+    <string name="fragment_add_surface_m2">Surface in m2</string>
+    <string name="fragment_add_price">Price</string>
+    <string name="fragment_add_property_type">Type of the property</string>
+    <string name="fragment_add_intrests_points">Intrest Points</string>
+    <string name="fragment_add_city">City</string>
+    <string name="fragment_add_postal_code">Postal Code</string>
+    <string name="fragment_add_location">Location</string>
+    <string name="fragment_add_number">Number</string>
+    <string name="fragment_add_name_of_agent">Agents name</string>
 </resources>

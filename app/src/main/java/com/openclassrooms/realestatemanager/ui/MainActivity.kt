@@ -3,6 +3,7 @@ package com.openclassrooms.realestatemanager.ui
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.navigation.ui.AppBarConfiguration
@@ -49,8 +50,21 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
             }
         }
 
+
+
         setSupportActionBar(toolbar)
         setupNavigation()
+        setupNavigationListener()
+    }
+
+    private fun setupNavigationListener() {
+        getNavController().addOnDestinationChangedListener { _, destination, _ ->
+            bottomNavigationView.visibility = when (destination.id) {
+                R.id.navigation_map,
+                R.id.navigation_list -> View.VISIBLE
+                else -> View.GONE
+            }
+        }
     }
 
     private fun setupNavigation() {
@@ -69,7 +83,7 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
     }
 
     override fun fromMapToDetails(id: String) {
-       getNavController().navigate(MapFragmentDirections.actionToDetails(id))
+        getNavController().navigate(MapFragmentDirections.actionToDetails(id))
     }
 
     override fun fromListToDetails(id: String) {
