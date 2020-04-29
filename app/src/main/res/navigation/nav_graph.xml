@@ -15,7 +15,11 @@
             app:destination="@id/propertyDetailsFragment" />
         <action
             android:id="@+id/actionToAdd"
-            app:destination="@id/navigation_add" />
+            app:destination="@id/navigation_add"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/actionToSearch"
             app:destination="@id/navigation_search" />

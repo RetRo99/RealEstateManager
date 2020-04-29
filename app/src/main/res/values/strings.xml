@@ -14,8 +14,8 @@
         <item>House</item>
         <item>Studio</item>
     </string-array>
-    <string name="fragment_add_hobbies">hobbies</string>
-    <string name="fragment_add_doctor">doctor</string>
+    <string name="fragment_add_hobbies">Hobbies</string>
+    <string name="fragment_add_doctor">Doctor</string>
     <string name="fragment_add_public_transport">Public transport</string>
     <string name="fragment_add_stores">Stores</string>
     <string name="fragment_add_park">Park</string>
@@ -33,4 +33,6 @@
     <string name="fragment_add_location">Location</string>
     <string name="fragment_add_number">Number</string>
     <string name="fragment_add_name_of_agent">Agents name</string>
+    <string name="fragment_add_add_property">Add property</string>
+    <string name="error_missing_info">Missing Info</string>
 </resources>

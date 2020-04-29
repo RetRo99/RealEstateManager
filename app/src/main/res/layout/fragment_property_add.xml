@@ -51,8 +51,7 @@
                 android:id="@+id/etAgentName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/fragment_add_name_of_agent"
-                android:inputType="number" />
+                android:hint="@string/fragment_add_name_of_agent" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -139,8 +138,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_weight="2"
-            app:layout_constraintStart_toEndOf="@+id/textInputLayout3"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            app:layout_constraintStart_toEndOf="@+id/layoutNumber"
+            app:layout_constraintTop_toBottomOf="@+id/tvLocation">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etStreet"
@@ -151,7 +150,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout3"
+            android:id="@+id/layoutNumber"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -161,10 +160,10 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            app:layout_constraintTop_toBottomOf="@+id/tvLocation">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/number_edit_text"
+                android:id="@+id/etNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/fragment_add_number"
@@ -172,7 +171,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tvLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -184,19 +183,19 @@
             app:layout_constraintTop_toBottomOf="@+id/layoutDescription" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout8"
+            android:id="@+id/layoutPostCode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/textInputLayout9"
+            app:layout_constraintEnd_toStartOf="@+id/layoutCity"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layoutStreet">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/postal_code_edit_text"
+                android:id="@+id/etPostCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/fragment_add_postal_code"
@@ -204,7 +203,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout9"
+            android:id="@+id/layoutCity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -213,11 +212,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_weight="2"
-            app:layout_constraintStart_toEndOf="@+id/textInputLayout8"
+            app:layout_constraintStart_toEndOf="@+id/layoutPostCode"
             app:layout_constraintTop_toBottomOf="@+id/layoutStreet">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/city_edit_text"
+                android:id="@+id/etCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/fragment_add_city"
@@ -248,7 +247,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout8" />
+            app:layout_constraintTop_toBottomOf="@+id/layoutPostCode" />
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -294,6 +293,7 @@
             android:text="@string/fragment_add_stores"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/rbPark"
+            app:layout_constraintBottom_toTopOf="@+id/btnAddProperty"
             app:layout_constraintTop_toBottomOf="@+id/rbPark" />
 
         <CheckBox
@@ -328,7 +328,8 @@
             android:text="@string/fragment_add_hobbies"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/rbDoctor"
-            app:layout_constraintTop_toBottomOf="@+id/rbDoctor" />
+            app:layout_constraintTop_toBottomOf="@+id/rbDoctor"
+            app:layout_constraintBottom_toTopOf="@+id/btnAddProperty"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
@@ -336,6 +337,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.50" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddProperty"
+            android:layout_width="0dp"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:text="@string/fragment_add_add_property"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

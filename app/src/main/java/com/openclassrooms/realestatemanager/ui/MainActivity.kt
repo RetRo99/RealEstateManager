@@ -21,7 +21,6 @@ import javax.inject.Inject
 // it referenced view in second activity
 //had to transform quantity to string
 
-
 class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationItemSelectedListener,
     MainView {
 
