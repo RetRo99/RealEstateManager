@@ -1,8 +1,6 @@
 package com.openclassrooms.realestatemanager.ui
 
 import android.app.Activity
-import com.openclassrooms.realestatemanager.ui.*
-import com.openclassrooms.realestatemanager.ui.UiModule
 import dagger.Binds
 import dagger.Module
 

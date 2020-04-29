@@ -14,7 +14,7 @@ android {
         sourceCompatibility = "8"
     }
     defaultConfig {
-        applicationId "com.retar.go4lunch"
+        applicationId "com.openclassrooms.realestatemanager"
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
@@ -70,6 +70,8 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation("io.reactivex.rxjava2:rxkotlin:2.4.0")
 
+    //for material design
+    implementation 'com.google.android.material:material:1.0.0'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'

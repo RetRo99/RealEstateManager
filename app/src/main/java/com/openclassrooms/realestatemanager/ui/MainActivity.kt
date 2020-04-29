@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.openclassrooms.realestatemanager.R
@@ -14,6 +15,7 @@ import com.openclassrooms.realestatemanager.base.LocationPermissionActivity
 import com.openclassrooms.realestatemanager.ui.map.MapFragmentDirections
 import com.openclassrooms.realestatemanager.ui.propertyList.PropertyListFragmentDirections
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 // it referenced view in second activity
 //had to transform quantity to string
@@ -22,6 +24,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationItemSelectedListener,
     MainView {
 
+    @Inject
+    lateinit var presenter: MainViewPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +76,10 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
         getNavController().navigate(PropertyListFragmentDirections.actionToDetails(id))
     }
 
+    override fun showToast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
     override fun requestLocation() {
         // TODO not implemented
     }
@@ -81,6 +89,15 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if(item.itemId == R.id.navigation_add) {
+            item.onNavDestinationSelected(getNavController())
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

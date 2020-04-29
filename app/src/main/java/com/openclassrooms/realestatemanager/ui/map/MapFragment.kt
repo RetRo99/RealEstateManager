@@ -15,11 +15,11 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.base.BaseSearchAndAddFragment
 import com.openclassrooms.realestatemanager.ui.map.model.UiMarkerModel
-import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class MapFragment : DaggerFragment(), MapView,
+class MapFragment : BaseSearchAndAddFragment(), MapView,
     OnMapReadyCallback {
 
     private lateinit var googleMap: GoogleMap
@@ -102,7 +102,6 @@ class MapFragment : DaggerFragment(), MapView,
 
     companion object {
 
-        const val TAG = "com.retar.go4lunch.ui.map.mapfragment"
 
         const val ZOOM_MODE = 14.3f
 

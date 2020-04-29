@@ -9,4 +9,6 @@
     <string name="dialog_permission_required">Permission required</string>
     <string name="dialog_ok">OK</string>
     <string name="dialog_exit">EXIT</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_add">Add</string>
 </resources>

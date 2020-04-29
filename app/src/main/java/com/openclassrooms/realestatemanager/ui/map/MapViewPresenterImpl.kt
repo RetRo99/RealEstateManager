@@ -24,7 +24,6 @@ class MapViewPresenterImpl @Inject constructor(
         locationManager.updateLocation()
     }
 
-
     private fun displayOrShowNoResult(markerList: List<UiMarkerModel>) {
     }
 

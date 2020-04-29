@@ -1,17 +1,15 @@
 package com.openclassrooms.realestatemanager.ui.propertyList
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.base.BaseSearchAndAddFragment
 import com.openclassrooms.realestatemanager.ui.propertyList.adapter.PropertyAdapter
 import com.openclassrooms.realestatemanager.ui.propertyList.model.DummyContent
-import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_property_list.*
 import javax.inject.Inject
 
-class PropertyListFragment : DaggerFragment(), PropertyListView {
+class PropertyListFragment : BaseSearchAndAddFragment(), PropertyListView {
 
     @Inject
     lateinit var presenter: PropertyListPresenter
@@ -41,5 +39,4 @@ class PropertyListFragment : DaggerFragment(), PropertyListView {
     override fun setData(data: List<DummyContent.DummyItem>) {
         adapter.setData(data)
     }
-
 }
