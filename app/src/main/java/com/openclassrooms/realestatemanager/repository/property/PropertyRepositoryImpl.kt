@@ -1,51 +1,37 @@
 package com.openclassrooms.realestatemanager.repository.property
 
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
-import com.openclassrooms.realestatemanager.ui.propertyList.model.UiProperty
+import com.openclassrooms.realestatemanager.database.property.PropertyDao
+import io.reactivex.Completable
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class PropertyRepositoryImpl:PropertyRepository {
+class PropertyRepositoryImpl @Inject constructor(
+    private val propertyDao: PropertyDao
+) : PropertyRepository {
 
-    val itemList = mutableListOf(
-        UiProperty("123", "sex house", "zasotnj", "pr men Doma"),
-        UiProperty("123", "sex house", "zasotnj", "pr men Doma"),
-        UiProperty("123", "sex house", "zasotnj", "pr men Doma"),
-        UiProperty("123", "sex house", "zasotnj", "pr men Doma"),
-        UiProperty("123", "sex house", "zasotnj", "pr men Doma"),
-        UiProperty("123", "sex house", "zasotnj", "pr men Doma"),
-        UiProperty("123", "sex house", "zasotnj", "pr men Doma"),
-        UiProperty("123", "sex house", "zasotnj", "pr men Doma"),
-        UiProperty("123", "sex house", "zasotnj", "pr men Doma"),
-        UiProperty("123", "sex house", "zasotnj", "pr men Doma"),
-        UiProperty("123", "sex house", "zasotnj", "pr men Doma"),
-        UiProperty("123", "sex house", "zasotnj", "pr men Doma")
-    )
-
-    val details = mutableListOf<UiPropertyDetail>()
-
-    override fun getProperty(id: String): UiPropertyDetail {
-       return details.find {
-           it.id == id
-       } ?: throw Exception("Property that wants to be edited has to here")
+    override fun getProperty(id: String): Single<UiPropertyDetail> {
+        return propertyDao.getProperty(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
     override fun updateProperty(property: UiPropertyDetail) {
 
     }
 
-    override fun getProperties(): List<UiProperty> {
-        return itemList
+    override fun getProperties(): Single<List<UiPropertyDetail>> {
+        return propertyDao.getProperties()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun addProperty(property: UiPropertyDetail) {
-        details.add(property)
-        itemList.add(
-            UiProperty(
-                property.id,
-                property.type,
-                property.price.toString(),
-                property.address.city
-            )
-        )
+    override fun addProperty(property: UiPropertyDetail): Completable {
+        return propertyDao.addProperty(property)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
 

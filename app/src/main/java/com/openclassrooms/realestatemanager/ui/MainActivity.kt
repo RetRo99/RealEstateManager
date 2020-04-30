@@ -96,6 +96,10 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
+    override fun navigateBack() {
+        getNavController().navigateUp()
+    }
+
     override fun requestLocation() {
         // TODO not implemented
     }

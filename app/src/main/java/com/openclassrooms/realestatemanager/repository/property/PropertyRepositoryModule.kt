@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager.repository.property
 
+import com.openclassrooms.realestatemanager.database.property.PropertyDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -10,8 +11,10 @@ class PropertyRepositoryModule {
 
     @Provides
     @Singleton
-    fun providePropertyModule(): PropertyRepository {
-        return PropertyRepositoryImpl()
+    fun providePropertyModule(propertyDao: PropertyDao): PropertyRepository {
+        return PropertyRepositoryImpl(propertyDao)
     }
 
 }
+
+

@@ -1,20 +1,28 @@
 package com.openclassrooms.realestatemanager.ui.propertyAdd
 
 import android.net.Uri
+import android.util.Log
+import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
 import com.openclassrooms.realestatemanager.repository.property.PropertyRepository
+import com.openclassrooms.realestatemanager.ui.MainViewPresenter
 import com.vansuita.pickimage.bean.PickResult
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
+import io.reactivex.rxkotlin.subscribeBy
 import java.util.*
 import javax.inject.Inject
 
 class PropertyAddPresenterImpl @Inject constructor(
     private val view: PropertyAddView,
-    private val propertyRepository: PropertyRepository
+    private val propertyRepository: PropertyRepository,
+    private val parentPresenter: MainViewPresenter
 
 ):PropertyAddPresenter {
 
     private var isEdit = false
-    private var photos = mutableListOf<Uri>()
+    private var photos = mutableListOf<String>()
+    private val compositeDisposable = CompositeDisposable()
 
     override fun onAddProperty(property: UiPropertyDetail) {
         if (isEdit) {
@@ -25,7 +33,14 @@ class PropertyAddPresenterImpl @Inject constructor(
                     id = UUID.randomUUID().toString(),
                     photos = photos
                 )
-            )
+            ).subscribeBy(
+                onComplete = {
+                    parentPresenter.navigateBack()
+                },
+                onError = {
+                    view.showToast(R.string.error_something_wrong)
+                }
+            ).addTo(compositeDisposable)
 
         }
     }
@@ -33,10 +48,14 @@ class PropertyAddPresenterImpl @Inject constructor(
     override fun onViewCreated(id: String?) {
         id?.let {
             isEdit = true
-            val property = propertyRepository.getProperty(it)
-            view.setItem(property)
-            photos.addAll(property.photos)
-            view.setPhotos(photos)
+            propertyRepository.getProperty(it)
+                .subscribeBy(
+                    onSuccess = {
+                        view.setItem(it)
+                        photos.addAll(it.photos)
+                        view.setPhotos(photos)
+                    }
+                ).addTo(compositeDisposable)
         }
     }
 
@@ -56,8 +75,12 @@ class PropertyAddPresenterImpl @Inject constructor(
 
     override fun onImagePicked(result: PickResult?) {
         if (result != null) {
-            photos.add(result.uri)
+            photos.add(result.path)
             view.setPhotos(photos)
         }
+    }
+
+    override fun onDestroy() {
+        compositeDisposable.dispose()
     }
 }

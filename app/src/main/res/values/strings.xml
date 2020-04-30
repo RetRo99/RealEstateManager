@@ -44,4 +44,5 @@
     <string name="details_description">Description</string>
     <string name="details_address">Address</string>
     <string name="details_photos">Photos</string>
+    <string name="error_something_wrong">Something went please try again</string>
 </resources>

@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.base.model.Address
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
 import com.openclassrooms.realestatemanager.ui.propertyAdd.adapter.UriAdapter
 import com.vansuita.pickimage.bundle.PickSetup
@@ -54,8 +54,12 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
 
     }
 
-    override fun setPhotos(photos: List<Uri>) {
+    override fun setPhotos(photos: List<String>) {
         adapter.setData(photos)
+    }
+
+    override fun showToast(msg: Int) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
     }
 
     override fun showImageDialog() {
@@ -78,10 +82,10 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
             etSurface.setText(surface.toString())
             etRooms.setText(numberOfRooms.toString())
             etDescription.setText(description)
-            etNumber.setText(address.number)
-            etStreet.setText(address.street)
-            etPostCode.setText(address.postalCode.toString())
-            etCity.setText(address.city)
+            etNumber.setText(address.substringBefore(" "))
+            etStreet.setText(address.substringAfter(" ").substringBefore(","))
+            etPostCode.setText(address.substringAfter(",").substringBefore(" "))
+            etCity.setText(address.substringAfterLast(" "))
             etPrice.setText(price.toString())
             setInterestPoints(interestPoints)
         }
@@ -174,12 +178,7 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
 
         getInterestPoints()
 
-        val address = Address(
-            etNumber.text.toString(),
-            etStreet.text.toString(),
-            etPostCode.text.toString().toInt(),
-            etCity.text.toString()
-        )
+        val address = "${etNumber.text} ${etStreet.text},\n${etStreet.text} ${etCity.text}"
         val interestPoints = getInterestPoints()
 
         val type =
@@ -213,6 +212,11 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
         }.map {
             it.text.toString()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onDestroy()
     }
 
 }

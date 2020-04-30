@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager.ui.propertyAdd.adapter
 
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +12,9 @@ import kotlinx.android.synthetic.main.item_uri.view.*
 class UriAdapter(val isDetails :Boolean = true,val action: ((Int) -> (Unit))? = null) :
     RecyclerView.Adapter<UriAdapter.UriHolder>() {
 
-    private var data = listOf<Uri>()
+    private var data = listOf<String>()
 
-    fun setData(data: List<Uri>) {
+    fun setData(data: List<String>) {
         this.data = data
         notifyDataSetChanged()
     }
@@ -31,10 +32,10 @@ class UriAdapter(val isDetails :Boolean = true,val action: ((Int) -> (Unit))? = 
     override fun getItemCount(): Int = data.size
 
     inner class UriHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(uri: Uri, position: Int) {
+        fun bind(path: String, position: Int) {
 
             view.run{
-                ivUri.setImageURI(uri)
+                ivUri.setImageBitmap(BitmapFactory.decodeFile(path))
                if(isDetails){
                    ivDeleteUri.visibility = View.VISIBLE
                    ivDeleteUri.setOnClickListener {

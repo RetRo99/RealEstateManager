@@ -1,6 +1,6 @@
 package com.openclassrooms.realestatemanager.ui.propertyAdd
 
-import android.net.Uri
+import androidx.annotation.StringRes
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
 
 interface PropertyAddView {
@@ -8,5 +8,7 @@ interface PropertyAddView {
     fun clearErrors()
     fun checkIfFilled()
     fun showImageDialog()
-    fun setPhotos(photos: List<Uri>)
+    fun setPhotos(photos: List<String>)
+    fun showToast(@StringRes msg: Int)
+
 }

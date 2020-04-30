@@ -42,4 +42,9 @@ class PropertyListFragment : BaseToolbarFragment(), PropertyListView {
     override fun setData(data: List<UiProperty>) {
         adapter.setData(data)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onDestroy()
+    }
 }

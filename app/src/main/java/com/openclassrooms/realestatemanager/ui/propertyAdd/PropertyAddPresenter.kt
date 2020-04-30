@@ -10,4 +10,5 @@ interface PropertyAddPresenter {
     fun onAddPhotoClicked()
     fun onImagePicked(result: PickResult?)
     fun onRemovePhotoClicked(position: Int)
+    fun onDestroy()
 }

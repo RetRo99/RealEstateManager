@@ -40,7 +40,7 @@ class PropertyDetailsFragment : BaseToolbarFragment(), PropertyDetailsView {
         presenter.onViewCreated(args.id)
     }
 
-    override fun setPhotos(photos: List<Uri>) {
+    override fun setPhotos(photos: List<String>) {
         rvHolder.visibility = View.VISIBLE
         rvPhotos.adapter = adapter
         adapter.setData(photos)
@@ -58,4 +58,9 @@ class PropertyDetailsFragment : BaseToolbarFragment(), PropertyDetailsView {
         }
     }
 
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onDestroy()
+    }
 }

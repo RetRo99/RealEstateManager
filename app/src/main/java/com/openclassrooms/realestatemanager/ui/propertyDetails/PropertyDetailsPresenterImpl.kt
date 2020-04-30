@@ -1,8 +1,8 @@
 package com.openclassrooms.realestatemanager.ui.propertyDetails
 
-import android.util.Log
 import com.openclassrooms.realestatemanager.repository.property.PropertyRepository
-import com.openclassrooms.realestatemanager.ui.MainViewPresenter
+import io.reactivex.disposables.Disposable
+import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
 class PropertyDetailsPresenterImpl @Inject constructor(
@@ -11,14 +11,21 @@ class PropertyDetailsPresenterImpl @Inject constructor(
 
 ) : PropertyDetailsPresenter {
 
+    private var disposable: Disposable? = null
 
     override fun onViewCreated(id: String) {
-        val property = propertyRepository.getProperty(id)
-        view.setItem(property)
+        disposable = propertyRepository.getProperty(id)
+            .subscribeBy(
+                onSuccess = {
+                    view.setItem(it)
+                    view.setPhotos(it.photos)
+                }
+            )
+    }
 
-        if (property.photos.isNotEmpty()){
-            view.setPhotos(property.photos)
-        }
+    override fun onDestroy() {
+        disposable?.dispose()
+
     }
 
 }

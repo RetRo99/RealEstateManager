@@ -13,6 +13,10 @@ class MainPresenterImpl @Inject constructor(
         view.fromMapToDetails(id)
     }
 
+    override fun navigateBack() {
+        view.navigateBack()
+    }
+
     override fun onPropertyClicked(id: String) {
         currentId = id
         view.fromListToDetails(id)
