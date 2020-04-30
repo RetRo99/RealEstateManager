@@ -3,12 +3,12 @@ package com.openclassrooms.realestatemanager
 import android.content.Context
 import android.location.Location
 import android.net.ConnectivityManager
-import android.net.wifi.WifiManager
-import android.view.View
-import android.view.inputmethod.InputMethodManager
+import android.util.Log
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.model.LatLng
+import com.openclassrooms.realestatemanager.base.Constants.GOOGLE_KEY
+import java.net.URLEncoder.encode
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -66,12 +66,11 @@ object Utils {
 
 }
 
-fun ImageView.loadRestaurantPhoto(address: String?) {
-   Glide.with(this)
-//        .load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=$photoReference&key=$GOOGLE_KEY")
-//        .placeholder(R.drawable.ic_restaurant)
-//        .error(R.drawable.ic_restaurant)
-//        .into(this)
+fun ImageView.loadMap(lat: Double, lng: Double) {
+    val urlLocation = encode("$lat,$lng", "UTF-8")
+    Glide.with(this)
+        .load("https://maps.googleapis.com/maps/api/staticmap?center=$urlLocation&zoom=13&size=700x500&markers=color:red%7label:C%7C$urlLocation&maptype=roadmap&key=$GOOGLE_KEY")
+        .into(this)
 
 
 }

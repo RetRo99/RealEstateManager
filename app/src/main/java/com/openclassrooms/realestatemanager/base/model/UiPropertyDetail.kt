@@ -31,7 +31,11 @@ data class UiPropertyDetail(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     @ColumnInfo(name = PHOTOS)
-    val photos: List<String> = listOf()
+    val photos: List<String> = listOf(),
+    @ColumnInfo(name = LAT)
+    val lat: Double = 0.0,
+    @ColumnInfo(name = LNG)
+    val lng: Double = 0.0
 ) : Parcelable {
     companion object{
         const val TABLE_NAME="property_details_table"
@@ -45,6 +49,8 @@ data class UiPropertyDetail(
         const val INTEREST_POINTS = "interest_points"
         const val PHOTOS = "photos"
         const val PUBLISHED_DATE = "published_date"
+        const val LAT = "lat"
+        const val LNG = "lng"
 
 
     }

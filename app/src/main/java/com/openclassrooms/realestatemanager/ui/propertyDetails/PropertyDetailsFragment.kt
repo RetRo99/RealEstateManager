@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
+import com.openclassrooms.realestatemanager.loadMap
 import com.openclassrooms.realestatemanager.ui.propertyAdd.adapter.PhotoAdapter
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_property_details.*
@@ -49,7 +50,6 @@ class PropertyDetailsFragment : DaggerFragment(), PropertyDetailsView {
         adapter.setData(photos)
     }
 
-
     override fun setItem(property: UiPropertyDetail) {
         property.run {
             tvType.text = type
@@ -60,6 +60,7 @@ class PropertyDetailsFragment : DaggerFragment(), PropertyDetailsView {
             tvDescription.text = description
             tvAddress.text = address
             tvPublishedDate.text = publishedDate
+            ivStaticMap.loadMap(lat, lng)
         }
     }
 

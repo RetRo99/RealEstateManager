@@ -19,6 +19,8 @@ class PropertyAddPresenterImpl @Inject constructor(
 ):PropertyAddPresenter {
 
     private var isEdit = false
+
+    //handle rotate
     private var photos = mutableListOf<String>()
     private val compositeDisposable = CompositeDisposable()
     private var currentId = 0
@@ -45,6 +47,8 @@ class PropertyAddPresenterImpl @Inject constructor(
                     parentPresenter.navigateBack()
                 },
                 onError = {
+                    Log.d("čič", "onError")
+                    it.printStackTrace()
                     view.showToast(R.string.error_something_wrong)
                 }
             ).addTo(compositeDisposable)
