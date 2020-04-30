@@ -15,11 +15,7 @@
             app:destination="@id/propertyDetailsFragment" />
         <action
             android:id="@+id/actionToAdd"
-            app:destination="@id/navigation_add"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/fragment_close_exit"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:destination="@id/navigation_add"/>
         <action
             android:id="@+id/actionToSearch"
             app:destination="@id/navigation_search" />
@@ -68,4 +64,13 @@
         android:id="@+id/navigation_search"
         android:name="com.openclassrooms.realestatemanager.ui.searchProperty.PropertySearchFragment"
         android:label="PropertySearchFragment"/>
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.openclassrooms.realestatemanager.ui.blankFragment.BlankFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_blank" >
+        <action
+            android:id="@+id/actionToList"
+            app:destination="@id/navigation_list" />
+    </fragment>
 </navigation>

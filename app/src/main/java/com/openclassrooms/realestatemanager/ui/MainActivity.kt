@@ -2,11 +2,13 @@ package com.openclassrooms.realestatemanager.ui
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.GravityCompat
+import androidx.navigation.NavGraph
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.onNavDestinationSelected
@@ -14,11 +16,14 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.LocationPermissionActivity
+import com.openclassrooms.realestatemanager.ui.blankFragment.BlankFragment
+import com.openclassrooms.realestatemanager.ui.blankFragment.BlankFragmentDirections
 import com.openclassrooms.realestatemanager.ui.map.MapFragmentDirections
 import com.openclassrooms.realestatemanager.ui.propertyDetails.PropertyDetailsFragmentDirections
 import com.openclassrooms.realestatemanager.ui.propertyList.PropertyListFragmentDirections
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
+
 
 // it referenced view in second activity
 //had to transform quantity to string
@@ -29,7 +34,7 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
     @Inject
     lateinit var presenter: MainViewPresenter
 
-    override var isLandscapeLayout: Boolean = false
+    private var isLandscapeLayout: Boolean = false
 
     private var menu: Menu? = null
 
@@ -40,11 +45,14 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
         isLandscapeLayout =
             resources.getBoolean(R.bool.isTablet) || resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
+
+
         when {
             isLandscapeLayout -> {
                 Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show()
                 setContentView(R.layout.activity_main_landscape)
                 setupLandScapeNavigationListener()
+
             }
             else -> {
                 Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show()
@@ -90,9 +98,14 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
     }
 
     private fun setupNavigation() {
+        val navGraph: NavGraph = getNavController().navInflater.inflate(R.navigation.nav_graph)
+        val appBarConfiguration: AppBarConfiguration
 
         if (!isLandscapeLayout) {
-            val appBarConfiguration = AppBarConfiguration.Builder(
+            navGraph.startDestination = R.id.navigation_list
+
+
+            appBarConfiguration = AppBarConfiguration.Builder(
                 setOf(
                     R.id.navigation_map,
                     R.id.navigation_list
@@ -101,13 +114,31 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
             toolbar.setupWithNavController(getNavController(), appBarConfiguration)
 
         } else {
-            toolbar.setupWithNavController(getNavController())
-
+            appBarConfiguration = AppBarConfiguration.Builder(
+                setOf(
+                    R.id.navigation_map,
+                    R.id.navigation_list,
+                    R.id.propertyDetailsFragment,
+                    R.id.navigation_add,
+                    R.id.navigation_search,
+                    R.id.blankFragment
+                )
+            ).setDrawerLayout(drawer_layout).build()
+            navGraph.startDestination = R.id.blankFragment
         }
+
+        getNavController().graph = navGraph
+
+        if (getCurrentDestinationId() == R.id.navigation_list) getNavController().navigateUp()
+        if (getCurrentDestinationId() == R.id.blankFragment) getNavController().navigateUp()
+
+        toolbar.setupWithNavController(getNavController(), appBarConfiguration)
 
         navigationView.setNavigationItemSelectedListener(this)
 
         NavigationUI.setupWithNavController(bottomNavigationView, getNavController())
+
+
     }
 
     override fun fromMapToDetails(id: Int) {

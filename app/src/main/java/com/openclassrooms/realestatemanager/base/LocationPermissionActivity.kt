@@ -19,10 +19,8 @@ abstract class LocationPermissionActivity : DaggerAppCompatActivity() {
 
     private var requestDialog: AlertDialog? = null
 
-    abstract  var isLandscapeLayout:Boolean
-
     fun getNavController(): NavController {
-        return if(!isLandscapeLayout) findNavController(R.id.nav_host) else findNavController(R.id.nav_host_landscape)
+        return findNavController(R.id.nav_host)
     }
 
     private fun permissionsGranted(): Boolean {
