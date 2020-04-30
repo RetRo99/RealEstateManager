@@ -13,19 +13,19 @@ class PropertyDetailsPresenterImpl @Inject constructor(
 
     private var disposable: Disposable? = null
 
-    override fun onViewCreated(id: String) {
+    override fun onViewCreated(id: Int) {
         disposable = propertyRepository.getProperty(id)
             .subscribeBy(
                 onSuccess = {
                     view.setItem(it)
-                    view.setPhotos(it.photos)
+                    if (it.photos.isNotEmpty()) view.setPhotos(it.photos)
+                    view.showContent()
                 }
             )
     }
 
     override fun onDestroy() {
         disposable?.dispose()
-
+        val s:Int? = null
     }
-
 }

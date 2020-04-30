@@ -5,6 +5,6 @@ interface MapViewPresenter {
     fun onViewCreated()
     fun onMapReady()
     fun onDestroy()
-    fun onMarkerClicked(id: String)
+    fun onMarkerClicked(id: Int)
 
 }

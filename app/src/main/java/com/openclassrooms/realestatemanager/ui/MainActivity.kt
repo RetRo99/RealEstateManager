@@ -82,12 +82,12 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
         NavigationUI.setupWithNavController(bottomNavigationView, getNavController())
     }
 
-    override fun fromMapToDetails(id: String) {
+    override fun fromMapToDetails(id: Int) {
         currentId = id
         getNavController().navigate(MapFragmentDirections.actionToDetails(id))
     }
 
-    override fun fromListToDetails(id: String) {
+    override fun fromListToDetails(id: Int) {
         currentId = id
         getNavController().navigate(PropertyListFragmentDirections.actionToDetails(id))
     }
@@ -129,7 +129,7 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
 
 
     companion object {
-        lateinit var currentId: String
+         var currentId: Int = 0
     }
 }
 

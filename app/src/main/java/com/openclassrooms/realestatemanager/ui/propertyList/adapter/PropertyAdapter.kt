@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager.ui.propertyList.adapter
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.propertyList.model.UiProperty
 import kotlinx.android.synthetic.main.item_property.view.*
+import kotlinx.android.synthetic.main.item_uri.view.*
 
-class PropertyAdapter(val action: (String) -> (Unit)) :
+class PropertyAdapter(val action: (Int) -> (Unit)) :
     RecyclerView.Adapter<PropertyAdapter.PropertyHolder>() {
 
     private var data = listOf<UiProperty>()
@@ -37,6 +39,7 @@ class PropertyAdapter(val action: (String) -> (Unit)) :
                 tvPropertyType.text = item.type
                 tvPropertyLocation.text = item.location
                 tvPropertyPrice.text = item.price
+                ivProperty.setImageBitmap(BitmapFactory.decodeFile(item.photo))
                 setOnClickListener {
                     action(item.id)
                 }

@@ -38,7 +38,7 @@ class MapViewPresenterImpl @Inject constructor(
     }
 
 
-    override fun onMarkerClicked(id: String) {
+    override fun onMarkerClicked(id: Int) {
         parentPresenter.onMarkerClicked(id)
     }
 

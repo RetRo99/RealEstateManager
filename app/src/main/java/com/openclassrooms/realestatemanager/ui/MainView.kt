@@ -3,8 +3,8 @@ package com.openclassrooms.realestatemanager.ui
 
 interface MainView {
 
-    fun fromListToDetails(id:String)
-    fun fromMapToDetails(id: String)
+    fun fromListToDetails(id: Int)
+    fun fromMapToDetails(id: Int)
     fun showToast(msg: String)
     fun navigateBack()
 

@@ -1,7 +1,6 @@
 package com.openclassrooms.realestatemanager.repository.property
 
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
-import com.openclassrooms.realestatemanager.ui.propertyList.model.UiProperty
 import io.reactivex.Completable
 import io.reactivex.Single
 
@@ -9,6 +8,6 @@ interface PropertyRepository{
 
     fun getProperties(): Single<List<UiPropertyDetail>>
     fun addProperty(property: UiPropertyDetail): Completable
-    fun updateProperty(property: UiPropertyDetail)
-    fun getProperty(id: String): Single<UiPropertyDetail>
+    fun updateProperty(property: UiPropertyDetail): Completable
+    fun getProperty(id: Int): Single<UiPropertyDetail>
 }

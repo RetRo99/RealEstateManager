@@ -5,7 +5,11 @@ import androidx.room.TypeConverter
 class StringListConverter {
     @TypeConverter
     fun fromString(stringListString: String): List<String> {
-        return stringListString.split(",").map { it }
+        return if (stringListString.isNotBlank()) {
+            stringListString.split(",").map { it }
+        }else{
+            listOf()
+        }
     }
 
     @TypeConverter

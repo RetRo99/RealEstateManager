@@ -1,6 +1,6 @@
 package com.openclassrooms.realestatemanager.ui.propertyList
 
-import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
+import android.util.Log
 import com.openclassrooms.realestatemanager.repository.property.PropertyRepository
 import com.openclassrooms.realestatemanager.ui.MainViewPresenter
 import com.openclassrooms.realestatemanager.ui.propertyList.model.UiProperty
@@ -25,18 +25,22 @@ class PropertyListPresenterImpl @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .map {
                 it.map {
-                    UiProperty(it.id, it.type, it.price.toString(), it.address)
+                    UiProperty(it.id, it.type, it.price.toString(), it.address, it.photos[0])
                 }
             }
             .subscribeBy(
                 onSuccess = {
                     view.setData(it)
+                },
+                onError = {
+                    Log.d("čič", "onError")
+                    it.printStackTrace()
                 }
             )
 
     }
 
-    override fun onProperyClicked(id:String){
+    override fun onProperyClicked(id: Int){
         parentPresenter.onPropertyClicked(id)
     }
 

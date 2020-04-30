@@ -16,9 +16,9 @@ interface PropertyDao {
         fun getProperties(): Single<List<UiPropertyDetail>>
 
         @Update
-        fun updatePersonData(property: UiPropertyDetail)
+        fun updateProperty(property: UiPropertyDetail): Completable
 
-        @Query("SELECT * FROM ${UiPropertyDetail.TABLE_NAME} WHERE id=:id ")
-        fun getProperty(id: String): Single<UiPropertyDetail>
+        @Query("SELECT * FROM ${UiPropertyDetail.TABLE_NAME} WHERE id=:id")
+        fun getProperty(id: Int): Single<UiPropertyDetail>
 
 }

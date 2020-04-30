@@ -6,10 +6,8 @@ class MainPresenterImpl @Inject constructor(
     private val view: MainView
 ) : MainViewPresenter {
 
-    private lateinit var currentId: String
 
-    override fun onMarkerClicked(id: String) {
-        currentId = id
+    override fun onMarkerClicked(id: Int) {
         view.fromMapToDetails(id)
     }
 
@@ -17,8 +15,7 @@ class MainPresenterImpl @Inject constructor(
         view.navigateBack()
     }
 
-    override fun onPropertyClicked(id: String) {
-        currentId = id
+    override fun onPropertyClicked(id: Int) {
         view.fromListToDetails(id)
     }
 }

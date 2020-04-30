@@ -1,16 +1,15 @@
 package com.openclassrooms.realestatemanager.ui.propertyDetails
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.BaseToolbarFragment
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
-import com.openclassrooms.realestatemanager.ui.propertyAdd.adapter.UriAdapter
-import dagger.android.support.DaggerFragment
+import com.openclassrooms.realestatemanager.ui.propertyAdd.adapter.PhotoAdapter
 import kotlinx.android.synthetic.main.fragment_property_details.*
 import javax.inject.Inject
 
@@ -22,7 +21,7 @@ class PropertyDetailsFragment : BaseToolbarFragment(), PropertyDetailsView {
     @Inject
     lateinit var presenter: PropertyDetailsPresenter
 
-    private lateinit var adapter : UriAdapter
+    private lateinit var adapter: PhotoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,12 +30,17 @@ class PropertyDetailsFragment : BaseToolbarFragment(), PropertyDetailsView {
         return inflater.inflate(R.layout.fragment_property_details, container, false)
     }
 
+    override fun showContent() {
+        contentHolder.isVisible = true
+    }
+
+
     override fun provideMenuRes(): Int = R.menu.top_edit
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = UriAdapter(false)
+        adapter = PhotoAdapter(false)
         presenter.onViewCreated(args.id)
     }
 

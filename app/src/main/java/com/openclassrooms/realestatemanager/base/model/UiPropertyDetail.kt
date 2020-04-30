@@ -26,8 +26,8 @@ data class UiPropertyDetail(
     val address: String,
     @ColumnInfo(name = INTEREST_POINTS)
     val interestPoints: List<String>,
-    @PrimaryKey
-    val id: String = "",
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
     @ColumnInfo(name = PHOTOS)
     val photos: List<String> = listOf()
 ) : Parcelable {

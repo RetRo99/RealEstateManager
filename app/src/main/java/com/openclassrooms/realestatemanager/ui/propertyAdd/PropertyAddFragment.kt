@@ -1,16 +1,16 @@
 package com.openclassrooms.realestatemanager.ui.propertyAdd
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
-import com.openclassrooms.realestatemanager.ui.propertyAdd.adapter.UriAdapter
+import com.openclassrooms.realestatemanager.ui.propertyAdd.adapter.PhotoAdapter
 import com.vansuita.pickimage.bundle.PickSetup
 import com.vansuita.pickimage.dialog.PickImageDialog
 import dagger.android.support.DaggerFragment
@@ -25,13 +25,17 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
     @Inject
     lateinit var presenter: PropertyAddPresenter
 
-    private lateinit var adapter: UriAdapter
+    private lateinit var adapter: PhotoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_property_add, container, false)
+    }
+
+    override fun showContent() {
+        editHolder.isVisible = true
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,7 +49,7 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
             presenter.onAddPhotoClicked()
         }
 
-        adapter = UriAdapter {
+        adapter = PhotoAdapter {
             presenter.onRemovePhotoClicked(it)
         }
         rvPhotos.adapter = adapter
@@ -90,6 +94,8 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
             setInterestPoints(interestPoints)
         }
 
+        btnAddProperty.setText(R.string.update_property)
+
 
     }
 
@@ -129,7 +135,7 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
         layoutCity.isErrorEnabled = false
     }
 
-    override fun checkIfFilled() {
+    override fun validateData() {
         val errorMsg = getString(R.string.error_missing_info)
         when {
             etAgentName.text!!.isEmpty() -> {
@@ -168,6 +174,7 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
                 layoutPrice.error = errorMsg
 
             }
+            adapter.itemCount == 0 -> showToast(R.string.error_no_photo)
             else -> {
                 getPropertyFromUi()
             }

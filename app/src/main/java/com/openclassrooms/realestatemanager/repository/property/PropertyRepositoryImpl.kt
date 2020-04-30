@@ -12,14 +12,16 @@ class PropertyRepositoryImpl @Inject constructor(
     private val propertyDao: PropertyDao
 ) : PropertyRepository {
 
-    override fun getProperty(id: String): Single<UiPropertyDetail> {
+    override fun getProperty(id: Int): Single<UiPropertyDetail> {
         return propertyDao.getProperty(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun updateProperty(property: UiPropertyDetail) {
-
+    override fun updateProperty(property: UiPropertyDetail): Completable {
+        return propertyDao.updateProperty(property)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
     override fun getProperties(): Single<List<UiPropertyDetail>> {

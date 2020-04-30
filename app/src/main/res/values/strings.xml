@@ -45,4 +45,6 @@
     <string name="details_address">Address</string>
     <string name="details_photos">Photos</string>
     <string name="error_something_wrong">Something went please try again</string>
+    <string name="update_property">Update Property</string>
+    <string name="error_no_photo">You Should Pick At Least One Photo</string>
 </resources>

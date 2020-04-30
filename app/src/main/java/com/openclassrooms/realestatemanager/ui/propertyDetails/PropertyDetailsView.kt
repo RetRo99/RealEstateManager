@@ -5,4 +5,5 @@ import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
 interface PropertyDetailsView {
     fun setItem(property: UiPropertyDetail)
     fun setPhotos(photos: List<String>)
+    fun showContent()
 }
