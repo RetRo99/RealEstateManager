@@ -58,6 +58,7 @@ class PropertyDetailsFragment : DaggerFragment(), PropertyDetailsView {
             tvNumberOfRooms.text = numberOfRooms.toString()
             tvPrice.text = price.toString()
             tvDescription.text = description
+            tvAddress.text = address
         }
     }
 

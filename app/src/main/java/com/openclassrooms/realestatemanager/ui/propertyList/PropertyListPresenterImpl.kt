@@ -29,7 +29,7 @@ class PropertyListPresenterImpl @Inject constructor(
                 }
             }
             .subscribeBy(
-                onSuccess = {
+                onNext = {
                     view.setData(it)
                 },
                 onError = {

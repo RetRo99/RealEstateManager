@@ -2,7 +2,6 @@ package com.openclassrooms.realestatemanager.ui
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -16,8 +15,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.LocationPermissionActivity
-import com.openclassrooms.realestatemanager.ui.blankFragment.BlankFragment
-import com.openclassrooms.realestatemanager.ui.blankFragment.BlankFragmentDirections
 import com.openclassrooms.realestatemanager.ui.map.MapFragmentDirections
 import com.openclassrooms.realestatemanager.ui.propertyDetails.PropertyDetailsFragmentDirections
 import com.openclassrooms.realestatemanager.ui.propertyList.PropertyListFragmentDirections
@@ -69,10 +66,28 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
 
     private fun setupPortraitNavigationListener() {
         getNavController().addOnDestinationChangedListener { _, destination, _ ->
-            bottomNavigationView.visibility = when (destination.id) {
+            when (destination.id) {
                 R.id.navigation_map,
-                R.id.navigation_list -> View.VISIBLE
-                else -> View.GONE
+                R.id.navigation_list -> {
+                    menu?.let {
+                        it.clear()
+                        menuInflater.inflate(R.menu.top_search_add, menu)
+                    }
+                    bottomNavigationView.visibility = View.VISIBLE
+                }
+                R.id.propertyDetailsFragment -> {
+                    menu?.let {
+                        it.clear()
+                        menuInflater.inflate(R.menu.top_edit, menu)
+                    }
+                }
+                R.id.navigation_add, R.id.navigation_search -> {
+                    menu?.clear()
+                }
+                R.id.blankFragment -> getNavController().navigateUp()
+                else -> {
+                    bottomNavigationView.visibility = View.GONE
+                }
             }
         }
     }
@@ -86,6 +101,7 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
                         menuInflater.inflate(R.menu.top_search_add_edit, menu)
                     }
                 }
+                R.id.navigation_list -> getNavController().navigateUp()
                 else -> {
                     menu?.let {
                         it.clear()
@@ -206,6 +222,10 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
         menuInflater.inflate(R.menu.top_search_add, menu)
         this.menu = menu
         return true
+    }
+
+    override fun onBackPressed() {
+        if (!getNavController().navigateUp()) super.onBackPressed()
     }
 }
 

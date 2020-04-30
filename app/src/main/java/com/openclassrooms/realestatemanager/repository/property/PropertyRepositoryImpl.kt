@@ -3,6 +3,7 @@ package com.openclassrooms.realestatemanager.repository.property
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
 import com.openclassrooms.realestatemanager.database.property.PropertyDao
 import io.reactivex.Completable
+import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -24,7 +25,7 @@ class PropertyRepositoryImpl @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun getProperties(): Single<List<UiPropertyDetail>> {
+    override fun getProperties(): Observable<List<UiPropertyDetail>> {
         return propertyDao.getProperties()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
