@@ -36,4 +36,12 @@
     <string name="fragment_add_add_property">Add property</string>
     <string name="error_missing_info">Missing Info</string>
     <string name="menu_edit">Edit</string>
+    <string name="details_type">Type</string>
+    <string name="details_agent_name">Agent Name</string>
+    <string name="details_surface">Surface</string>
+    <string name="details_rooms">Number Of Rooms</string>
+    <string name="details_price">Price</string>
+    <string name="details_description">Description</string>
+    <string name="details_address">Address</string>
+    <string name="details_photos">Photos</string>
 </resources>

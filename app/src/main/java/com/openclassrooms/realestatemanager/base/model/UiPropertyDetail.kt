@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager.base.model
 
+import android.net.Uri
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
@@ -13,7 +14,8 @@ data class UiPropertyDetail(
     val price: Double,
     val address: Address,
     val interestPoints: List<String>,
-    val id:String = ""
+    val id:String = "",
+    val photos:List<Uri> = listOf()
 ) : Parcelable
 
 @Parcelize

@@ -13,7 +13,12 @@ class PropertyDetailsPresenterImpl @Inject constructor(
 
 
     override fun onViewCreated(id: String) {
-        propertyRepository.getProperty(id)
+        val property = propertyRepository.getProperty(id)
+        view.setItem(property)
+
+        if (property.photos.isNotEmpty()){
+            view.setPhotos(property.photos)
+        }
     }
 
 }

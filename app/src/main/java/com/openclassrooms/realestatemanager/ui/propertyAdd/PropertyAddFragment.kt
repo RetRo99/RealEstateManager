@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager.ui.propertyAdd
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +10,13 @@ import androidx.navigation.fragment.navArgs
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.model.Address
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
+import com.openclassrooms.realestatemanager.ui.propertyAdd.adapter.UriAdapter
+import com.vansuita.pickimage.bundle.PickSetup
+import com.vansuita.pickimage.dialog.PickImageDialog
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_property_add.*
 import javax.inject.Inject
+
 
 class PropertyAddFragment : DaggerFragment(), PropertyAddView {
 
@@ -19,6 +24,8 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
 
     @Inject
     lateinit var presenter: PropertyAddPresenter
+
+    private lateinit var adapter: UriAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,29 +37,55 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         btnAddProperty.setOnClickListener {
-            clearErrors()
-            checkIfFilled()
+            presenter.onAddPropertyClicked()
         }
+
+        btnAddPhoto.setOnClickListener {
+            presenter.onAddPhotoClicked()
+        }
+
+        adapter = UriAdapter {
+            presenter.onRemovePhotoClicked(it)
+        }
+        rvPhotos.adapter = adapter
 
         presenter.onViewCreated(args.id)
 
+    }
 
+    override fun setPhotos(photos: List<Uri>) {
+        adapter.setData(photos)
+    }
+
+    override fun showImageDialog() {
+
+        val setup = PickSetup()
+            .setTitle("Pick Your image")
+
+
+        PickImageDialog.build(setup)
+            .setOnPickResult {
+                presenter.onImagePicked(it)
+            }
+            .show(parentFragmentManager)
     }
 
     override fun setItem(property: UiPropertyDetail) {
-        etAgentName.setText(property.agentName.toString())
-        etSurface.setText(property.surface.toString())
-        etRooms.setText(property.numberOfRooms.toString())
-        etDescription.setText(property.description.toString())
-        etNumber.setText(property.address.number.toString())
-        etStreet.setText(property.address.street.toString())
-        etPostCode.setText(property.address.postalCode.toString())
-        etCity.setText(property.address.city.toString())
-        etPrice.setText(property.price.toString())
 
-        setInterestPoints(property.interestPoints)
+        property.run {
+            etAgentName.setText(agentName)
+            etSurface.setText(surface.toString())
+            etRooms.setText(numberOfRooms.toString())
+            etDescription.setText(description)
+            etNumber.setText(address.number)
+            etStreet.setText(address.street)
+            etPostCode.setText(address.postalCode.toString())
+            etCity.setText(address.city)
+            etPrice.setText(price.toString())
+            setInterestPoints(interestPoints)
+        }
+
 
     }
 
@@ -72,9 +105,8 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
 
     }
 
-    private fun clearErrors() {
+    override fun clearErrors() {
         layoutAgentName.isErrorEnabled = false
-
 
         layoutSurface.isErrorEnabled = false
 
@@ -93,7 +125,7 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
         layoutCity.isErrorEnabled = false
     }
 
-    private fun checkIfFilled() {
+    override fun checkIfFilled() {
         val errorMsg = getString(R.string.error_missing_info)
         when {
             etAgentName.text!!.isEmpty() -> {

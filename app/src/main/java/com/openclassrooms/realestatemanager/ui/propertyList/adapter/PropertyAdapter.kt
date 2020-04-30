@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.propertyList.model.UiProperty
-import kotlinx.android.synthetic.main.item_property_list.view.*
+import kotlinx.android.synthetic.main.item_property.view.*
 
 class PropertyAdapter(val action: (String) -> (Unit)) :
-    RecyclerView.Adapter<PropertyAdapter.DummyHolder>() {
+    RecyclerView.Adapter<PropertyAdapter.PropertyHolder>() {
 
     private var data = listOf<UiProperty>()
 
@@ -18,19 +18,19 @@ class PropertyAdapter(val action: (String) -> (Unit)) :
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DummyHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PropertyHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_property_list, parent, false)
-        return DummyHolder(view)
+            .inflate(R.layout.item_property, parent, false)
+        return PropertyHolder(view)
     }
 
-    override fun onBindViewHolder(holder: DummyHolder, position: Int) {
+    override fun onBindViewHolder(holder: PropertyHolder, position: Int) {
         holder.bind(data[position])
     }
 
     override fun getItemCount(): Int = data.size
 
-    inner class DummyHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    inner class PropertyHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: UiProperty) {
 
             view.run{
