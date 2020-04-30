@@ -21,8 +21,6 @@ class PropertyListPresenterImpl @Inject constructor(
 
     override fun onViewCreated() {
         propertiesDisposable = propertyRepository.getProperties()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
             .map {
                 it.map {
                     UiProperty(it.id, it.type, it.price.toString(), it.address.substringAfterLast(" "), it.photos[0])

@@ -84,8 +84,9 @@ class MapFragment : DaggerFragment(), MapView,
     }
 
     override fun setMarkerClickListener() {
-        googleMap.setOnInfoWindowClickListener { marker ->
+        googleMap.setOnMarkerClickListener { marker ->
             presenter.onMarkerClicked(marker.tag.toString().toInt())
+            true
         }
     }
 
@@ -94,9 +95,7 @@ class MapFragment : DaggerFragment(), MapView,
     }
 
     override fun addMarker(marker: UiMarkerModel) {
-        val mapMarker = MarkerOptions().position(marker.latLng).title(marker.title).run {
-            icon(BitmapDescriptorFactory.fromResource(marker.icon))
-        }
+        val mapMarker = MarkerOptions().position(marker.latLng)
         googleMap.addMarker(mapMarker).tag = marker.id
     }
 

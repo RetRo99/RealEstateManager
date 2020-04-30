@@ -80,9 +80,12 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
                         it.clear()
                         menuInflater.inflate(R.menu.top_edit, menu)
                     }
+                    bottomNavigationView.visibility = View.GONE
+
                 }
                 R.id.navigation_add, R.id.navigation_search -> {
                     menu?.clear()
+                    bottomNavigationView.visibility = View.GONE
                 }
                 R.id.blankFragment -> getNavController().navigateUp()
                 else -> {

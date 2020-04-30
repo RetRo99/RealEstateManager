@@ -1,10 +1,10 @@
 package com.openclassrooms.realestatemanager.base.model
 
-import android.net.Uri
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -37,10 +37,16 @@ data class UiPropertyDetail(
     @ColumnInfo(name = LNG)
     val lng: Double = 0.0
 ) : Parcelable {
-    companion object{
-        const val TABLE_NAME="property_details_table"
+
+    val latLng: LatLng
+        get() {
+            return LatLng(lat, lng)
+        }
+
+    companion object {
+        const val TABLE_NAME = "property_details_table"
         const val TYPE = "type"
-        const val AGENT_NAME ="agent_name"
+        const val AGENT_NAME = "agent_name"
         const val SURFACE = "surface"
         const val NUMBER_OF_ROOMS = "number_of_rooms"
         const val DESCRIPTION = "description"
