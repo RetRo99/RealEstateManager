@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.base.BaseToolbarFragment
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
 import com.openclassrooms.realestatemanager.ui.propertyAdd.adapter.PhotoAdapter
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_property_details.*
 import javax.inject.Inject
 
-class PropertyDetailsFragment : BaseToolbarFragment(), PropertyDetailsView {
+class PropertyDetailsFragment : DaggerFragment(), PropertyDetailsView {
 
     private val args: PropertyDetailsFragmentArgs by navArgs()
 
@@ -35,7 +35,6 @@ class PropertyDetailsFragment : BaseToolbarFragment(), PropertyDetailsView {
     }
 
 
-    override fun provideMenuRes(): Int = R.menu.top_edit
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

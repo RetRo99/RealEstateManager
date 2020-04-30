@@ -3,20 +3,18 @@ package com.openclassrooms.realestatemanager.ui.propertyList
 import android.os.Bundle
 import android.view.*
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.base.BaseToolbarFragment
 import com.openclassrooms.realestatemanager.ui.propertyList.adapter.PropertyAdapter
 import com.openclassrooms.realestatemanager.ui.propertyList.model.UiProperty
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_property_list.*
 import javax.inject.Inject
 
-class PropertyListFragment : BaseToolbarFragment(), PropertyListView {
+class PropertyListFragment : DaggerFragment(), PropertyListView {
 
     @Inject
     lateinit var presenter: PropertyListPresenter
 
     private lateinit var adapter: PropertyAdapter
-
-    override fun provideMenuRes(): Int = R.menu.top_search_add
 
 
     override fun onCreateView(

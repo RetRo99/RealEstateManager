@@ -2,6 +2,7 @@ package com.openclassrooms.realestatemanager.ui
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -28,25 +29,27 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
     @Inject
     lateinit var presenter: MainViewPresenter
 
+    override var isLandscapeLayout: Boolean = false
+
+    private var menu: Menu? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val isTablet = resources.getBoolean(R.bool.isTablet)
 
-        val isLandscape = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-
-        setSupportActionBar(toolbar)
-
+        isLandscapeLayout =
+            resources.getBoolean(R.bool.isTablet) || resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
         when {
-            isTablet || isLandscape -> {
-                // todo handle landscape
+            isLandscapeLayout -> {
                 Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show()
-                setContentView(R.layout.activity_main)
+                setContentView(R.layout.activity_main_landscape)
+                setupLandScapeNavigationListener()
             }
             else -> {
                 Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show()
                 setContentView(R.layout.activity_main)
+                setupPortraitNavigationListener()
             }
         }
 
@@ -54,10 +57,9 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
 
         setSupportActionBar(toolbar)
         setupNavigation()
-        setupNavigationListener()
     }
 
-    private fun setupNavigationListener() {
+    private fun setupPortraitNavigationListener() {
         getNavController().addOnDestinationChangedListener { _, destination, _ ->
             bottomNavigationView.visibility = when (destination.id) {
                 R.id.navigation_map,
@@ -67,15 +69,41 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
         }
     }
 
-    private fun setupNavigation() {
-        val appBarConfiguration = AppBarConfiguration.Builder(
-            setOf(
-                R.id.navigation_map,
-                R.id.navigation_list
-            )
-        ).setDrawerLayout(drawer_layout).build()
+    private fun setupLandScapeNavigationListener() {
+        getNavController().addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.propertyDetailsFragment -> {
+                    menu?.let {
+                        it.clear()
+                        menuInflater.inflate(R.menu.top_search_add_edit, menu)
+                    }
+                }
+                else -> {
+                    menu?.let {
+                        it.clear()
+                        menuInflater.inflate(R.menu.top_search_add, menu)
 
-        toolbar.setupWithNavController(getNavController(), appBarConfiguration)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setupNavigation() {
+
+        if (!isLandscapeLayout) {
+            val appBarConfiguration = AppBarConfiguration.Builder(
+                setOf(
+                    R.id.navigation_map,
+                    R.id.navigation_list
+                )
+            ).setDrawerLayout(drawer_layout).build()
+            toolbar.setupWithNavController(getNavController(), appBarConfiguration)
+
+        } else {
+            toolbar.setupWithNavController(getNavController())
+
+        }
 
         navigationView.setNavigationItemSelectedListener(this)
 
@@ -88,8 +116,15 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
     }
 
     override fun fromListToDetails(id: Int) {
-        currentId = id
-        getNavController().navigate(PropertyListFragmentDirections.actionToDetails(id))
+        if (getCurrentDestinationId() != R.id.propertyDetailsFragment) {
+            currentId = id
+            getNavController().navigate(PropertyListFragmentDirections.actionToDetails(id))
+        } else if (currentId != id) {
+            currentId = id
+            getNavController().navigateUp()
+            getNavController().navigate(PropertyListFragmentDirections.actionToDetails(id))
+
+        }
     }
 
     override fun showToast(msg: String) {
@@ -99,6 +134,7 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
     override fun navigateBack() {
         getNavController().navigateUp()
     }
+
 
     override fun requestLocation() {
         // TODO not implemented
@@ -119,7 +155,7 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
     }
 
     private fun handleEdit() {
-        when (getNavController().currentDestination?.id) {
+        when (getCurrentDestinationId()) {
             R.id.propertyDetailsFragment -> {
                 getNavController().navigate(PropertyDetailsFragmentDirections.actionToEdit(currentId))
             }
@@ -127,9 +163,18 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
 
     }
 
+    private fun getCurrentDestinationId(): Int? {
+        return getNavController().currentDestination?.id
+    }
 
     companion object {
-         var currentId: Int = 0
+        var currentId: Int = 0
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_search_add, menu)
+        this.menu = menu
+        return true
     }
 }
 
