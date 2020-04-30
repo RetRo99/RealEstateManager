@@ -14,6 +14,7 @@ import com.google.android.material.navigation.NavigationView
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.LocationPermissionActivity
 import com.openclassrooms.realestatemanager.ui.map.MapFragmentDirections
+import com.openclassrooms.realestatemanager.ui.propertyDetails.PropertyDetailsFragmentDirections
 import com.openclassrooms.realestatemanager.ui.propertyList.PropertyListFragmentDirections
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -82,10 +83,12 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
     }
 
     override fun fromMapToDetails(id: String) {
+        currentId = id
         getNavController().navigate(MapFragmentDirections.actionToDetails(id))
     }
 
     override fun fromListToDetails(id: String) {
+        currentId = id
         getNavController().navigate(PropertyListFragmentDirections.actionToDetails(id))
     }
 
@@ -105,8 +108,24 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.navigation_edit -> handleEdit()
+        }
         return item.onNavDestinationSelected(getNavController()) || super.onOptionsItemSelected(item)
     }
 
+    private fun handleEdit() {
+        when (getNavController().currentDestination?.id) {
+            R.id.propertyDetailsFragment -> {
+                getNavController().navigate(PropertyDetailsFragmentDirections.actionToEdit(currentId))
+            }
+        }
+
+    }
+
+
+    companion object {
+        lateinit var currentId: String
+    }
 }
 

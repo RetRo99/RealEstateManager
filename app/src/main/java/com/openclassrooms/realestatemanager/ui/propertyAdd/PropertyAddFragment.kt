@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import androidx.navigation.fragment.navArgs
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.model.Address
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
@@ -13,6 +14,8 @@ import kotlinx.android.synthetic.main.fragment_property_add.*
 import javax.inject.Inject
 
 class PropertyAddFragment : DaggerFragment(), PropertyAddView {
+
+    private val args: PropertyAddFragmentArgs by navArgs()
 
     @Inject
     lateinit var presenter: PropertyAddPresenter
@@ -33,13 +36,45 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
             checkIfFilled()
         }
 
+        presenter.onViewCreated(args.id)
+
+
+    }
+
+    override fun setItem(property: UiPropertyDetail) {
+        etAgentName.setText(property.agentName.toString())
+        etSurface.setText(property.surface.toString())
+        etRooms.setText(property.numberOfRooms.toString())
+        etDescription.setText(property.description.toString())
+        etNumber.setText(property.address.number.toString())
+        etStreet.setText(property.address.street.toString())
+        etPostCode.setText(property.address.postalCode.toString())
+        etCity.setText(property.address.city.toString())
+        etPrice.setText(property.price.toString())
+
+        setInterestPoints(property.interestPoints)
+
+    }
+
+    private fun setInterestPoints(interestPoints: List<String>) {
+        val checkBoxes = mutableListOf<CheckBox>()
+        checkBoxes.add(rbSchool)
+        checkBoxes.add(rbPark)
+        checkBoxes.add(rbStores)
+        checkBoxes.add(rbTransport)
+        checkBoxes.add(rbDoctor)
+        checkBoxes.add(rbHobbies)
+
+        checkBoxes.forEach {
+            it.isChecked = (it.text in interestPoints)
+        }
+
 
     }
 
     private fun clearErrors() {
         layoutAgentName.isErrorEnabled = false
 
-        layoutAgentName.isErrorEnabled = false
 
         layoutSurface.isErrorEnabled = false
 
@@ -53,16 +88,14 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
 
         layoutPostCode.isErrorEnabled = false
 
+        layoutPrice.isErrorEnabled = false
+
         layoutCity.isErrorEnabled = false
     }
 
     private fun checkIfFilled() {
         val errorMsg = getString(R.string.error_missing_info)
         when {
-            etAgentName.text!!.isEmpty() -> {
-                layoutAgentName.error = errorMsg
-
-            }
             etAgentName.text!!.isEmpty() -> {
                 layoutAgentName.error = errorMsg
 
@@ -95,6 +128,10 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
                 layoutCity.error = errorMsg
 
             }
+            etPrice.text!!.isEmpty() -> {
+                layoutPrice.error = errorMsg
+
+            }
             else -> {
                 getPropertyFromUi()
             }
@@ -121,6 +158,7 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
             etAgentName.text.toString(),
             etSurface.text.toString().toDouble(),
             etRooms.text.toString().toDouble(),
+            etDescription.text.toString(),
             etPrice.text.toString().toDouble(),
             address,
             interestPoints

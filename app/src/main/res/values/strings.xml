@@ -35,4 +35,5 @@
     <string name="fragment_add_name_of_agent">Agents name</string>
     <string name="fragment_add_add_property">Add property</string>
     <string name="error_missing_info">Missing Info</string>
+    <string name="menu_edit">Edit</string>
 </resources>

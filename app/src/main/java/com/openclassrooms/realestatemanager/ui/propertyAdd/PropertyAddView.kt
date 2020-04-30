@@ -1,3 +1,7 @@
 package com.openclassrooms.realestatemanager.ui.propertyAdd
 
-interface PropertyAddView
+import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
+
+interface PropertyAddView {
+     fun setItem(property: UiPropertyDetail)
+}
