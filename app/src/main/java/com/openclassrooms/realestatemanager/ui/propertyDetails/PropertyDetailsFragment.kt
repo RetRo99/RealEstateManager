@@ -59,6 +59,7 @@ class PropertyDetailsFragment : DaggerFragment(), PropertyDetailsView {
             tvPrice.text = price.toString()
             tvDescription.text = description
             tvAddress.text = address
+            tvPublishedDate.text = publishedDate
         }
     }
 

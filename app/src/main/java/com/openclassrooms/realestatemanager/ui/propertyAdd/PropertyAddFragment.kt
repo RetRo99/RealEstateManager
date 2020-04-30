@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import com.openclassrooms.realestatemanager.R
+import com.openclassrooms.realestatemanager.Utils
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
 import com.openclassrooms.realestatemanager.ui.propertyAdd.adapter.PhotoAdapter
 import com.vansuita.pickimage.bundle.PickSetup
@@ -199,6 +200,7 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
             etDescription.text.toString(),
             etPrice.text.toString().toDouble(),
             address,
+            Utils.todayDate,
             interestPoints
         )
 

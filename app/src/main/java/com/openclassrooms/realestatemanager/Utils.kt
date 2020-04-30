@@ -6,6 +6,8 @@ import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.google.android.gms.maps.model.LatLng
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -63,18 +65,13 @@ object Utils {
     }
 
 }
-fun View.showKeyboard() {
-    this.requestFocus()
-    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
-    imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
+fun ImageView.loadRestaurantPhoto(address: String?) {
+   Glide.with(this)
+//        .load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=$photoReference&key=$GOOGLE_KEY")
+//        .placeholder(R.drawable.ic_restaurant)
+//        .error(R.drawable.ic_restaurant)
+//        .into(this)
 
-}
-
-
-fun View.hideKeyboard() {
-    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-
-    imm.hideSoftInputFromWindow(windowToken, 0)
 
 }

@@ -24,6 +24,8 @@ data class UiPropertyDetail(
     val price: Double,
     @ColumnInfo(name = ADDRESS)
     val address: String,
+    @ColumnInfo(name = PUBLISHED_DATE)
+    val publishedDate: String,
     @ColumnInfo(name = INTEREST_POINTS)
     val interestPoints: List<String>,
     @PrimaryKey(autoGenerate = true)
@@ -42,6 +44,7 @@ data class UiPropertyDetail(
         const val ADDRESS = "address"
         const val INTEREST_POINTS = "interest_points"
         const val PHOTOS = "photos"
+        const val PUBLISHED_DATE = "published_date"
 
 
     }

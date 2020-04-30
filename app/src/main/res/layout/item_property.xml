@@ -24,14 +24,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-
-
-
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginStart="16dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivProperty">
@@ -40,20 +37,26 @@
                 android:id="@+id/tvPropertyType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 tools:text="Apartment" />
-
 
             <TextView
                 android:id="@+id/tvPropertyLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
                 tools:text="Manhatan" />
 
             <TextView
                 android:id="@+id/tvPropertyPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:textSize="16sp"
                 android:textColor="@android:color/holo_red_dark"
                 tools:text="Price" />
 

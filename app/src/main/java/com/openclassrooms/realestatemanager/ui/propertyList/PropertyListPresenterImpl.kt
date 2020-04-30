@@ -25,7 +25,7 @@ class PropertyListPresenterImpl @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .map {
                 it.map {
-                    UiProperty(it.id, it.type, it.price.toString(), it.address, it.photos[0])
+                    UiProperty(it.id, it.type, it.price.toString(), it.address.substringAfterLast(" "), it.photos[0])
                 }
             }
             .subscribeBy(
