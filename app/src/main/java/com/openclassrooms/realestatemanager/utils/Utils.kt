@@ -44,7 +44,7 @@ object Utils {
      */
     val todayDate: String
         get() {
-            val dateFormat: DateFormat = SimpleDateFormat("dd/mm/yyyy")
+            val dateFormat: DateFormat = SimpleDateFormat("dd/MM/yyyy")
             return dateFormat.format(Date())
         }
 

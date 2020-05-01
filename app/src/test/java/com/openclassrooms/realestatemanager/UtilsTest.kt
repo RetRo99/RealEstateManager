@@ -24,7 +24,7 @@ class UtilsTest {
     @Test
     fun testStringDate() {
 
-        val formattedDate = SimpleDateFormat("dd/mm/yyyy").format(Date())
+        val formattedDate = SimpleDateFormat("dd/MM/yyyy").format(Date())
 
         assertThat(Utils.todayDate, `is`(formattedDate))
 
