@@ -9,9 +9,10 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import com.openclassrooms.realestatemanager.R
-import com.openclassrooms.realestatemanager.Utils
+import com.openclassrooms.realestatemanager.base.model.Address
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
 import com.openclassrooms.realestatemanager.ui.propertyAdd.adapter.PhotoAdapter
+import com.openclassrooms.realestatemanager.utils.Utils
 import com.vansuita.pickimage.bundle.PickSetup
 import com.vansuita.pickimage.dialog.PickImageDialog
 import dagger.android.support.DaggerFragment
@@ -84,13 +85,13 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
 
         property.run {
             etAgentName.setText(agentName)
-            etSurface.setText(surface.toString())
-            etRooms.setText(numberOfRooms.toString())
+            etSurface.setText(surface)
+            etRooms.setText(numberOfRooms)
             etDescription.setText(description)
-            etNumber.setText(address.substringBefore(" "))
-            etStreet.setText(address.substringAfter(" ").substringBefore(","))
-            etPostCode.setText(address.substringAfter(",").substringBefore(" "))
-            etCity.setText(address.substringAfterLast(" "))
+            etNumber.setText(address.number)
+            etStreet.setText(address.street)
+            etPostCode.setText(address.postalCode)
+            etCity.setText(address.city)
             etPrice.setText(price.toString())
             setInterestPoints(interestPoints)
         }
@@ -186,7 +187,12 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
 
         getInterestPoints()
 
-        val address = "${etNumber.text} ${etStreet.text},\n${etStreet.text} ${etCity.text}"
+        val address = Address(
+            etNumber.text.toString(),
+            etStreet.text.toString(),
+            etPostCode.text.toString(),
+            etCity.text.toString()
+        )
         val interestPoints = getInterestPoints()
 
         val type =
@@ -195,8 +201,8 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
         val property = UiPropertyDetail(
             type,
             etAgentName.text.toString(),
-            etSurface.text.toString().toDouble(),
-            etRooms.text.toString().toDouble(),
+            etSurface.text.toString(),
+            etRooms.text.toString(),
             etDescription.text.toString(),
             etPrice.text.toString().toDouble(),
             address,

@@ -1,13 +1,11 @@
 package com.openclassrooms.realestatemanager.base.model
 
-import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.android.gms.maps.model.LatLng
-import kotlinx.android.parcel.Parcelize
+import com.squareup.moshi.JsonClass
 
-@Parcelize
 @Entity(tableName = UiPropertyDetail.TABLE_NAME)
 data class UiPropertyDetail(
     @ColumnInfo(name = TYPE)
@@ -15,15 +13,15 @@ data class UiPropertyDetail(
     @ColumnInfo(name = AGENT_NAME)
     val agentName: String,
     @ColumnInfo(name = SURFACE)
-    val surface: Double,
+    val surface: String,
     @ColumnInfo(name = NUMBER_OF_ROOMS)
-    val numberOfRooms: Double,
+    val numberOfRooms: String,
     @ColumnInfo(name = DESCRIPTION)
     val description: String,
     @ColumnInfo(name = PRICE)
     val price: Double,
     @ColumnInfo(name = ADDRESS)
-    val address: String,
+    val address: Address,
     @ColumnInfo(name = PUBLISHED_DATE)
     val publishedDate: String,
     @ColumnInfo(name = INTEREST_POINTS)
@@ -36,7 +34,7 @@ data class UiPropertyDetail(
     val lat: Double = 0.0,
     @ColumnInfo(name = LNG)
     val lng: Double = 0.0
-) : Parcelable {
+) {
 
     val latLng: LatLng
         get() {
@@ -59,6 +57,21 @@ data class UiPropertyDetail(
         const val LNG = "lng"
 
 
+    }
+
+
+}
+
+@JsonClass(generateAdapter = true)
+data class Address(
+    val number: String,
+    val street: String,
+    val postalCode: String,
+    val city: String
+) {
+
+    override fun toString(): String {
+        return "$number $street, $postalCode $city"
     }
 }
 

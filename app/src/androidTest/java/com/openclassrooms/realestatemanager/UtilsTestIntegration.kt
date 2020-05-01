@@ -2,6 +2,7 @@ package com.openclassrooms.realestatemanager
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import com.openclassrooms.realestatemanager.utils.Utils
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith

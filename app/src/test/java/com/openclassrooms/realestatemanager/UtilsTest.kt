@@ -1,9 +1,9 @@
 package com.openclassrooms.realestatemanager
 
+import com.openclassrooms.realestatemanager.utils.Utils
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Assert.assertThat
 import org.junit.Test
-import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt

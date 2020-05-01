@@ -8,7 +8,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
-import com.openclassrooms.realestatemanager.loadMap
+import com.openclassrooms.realestatemanager.utils.loadMap
 import com.openclassrooms.realestatemanager.ui.propertyAdd.adapter.PhotoAdapter
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_property_details.*
@@ -58,7 +58,7 @@ class PropertyDetailsFragment : DaggerFragment(), PropertyDetailsView {
             tvNumberOfRooms.text = numberOfRooms.toString()
             tvPrice.text = price.toString()
             tvDescription.text = description
-            tvAddress.text = address
+            tvAddress.text = address.toString()
             tvPublishedDate.text = publishedDate
             ivStaticMap.loadMap(lat, lng)
         }

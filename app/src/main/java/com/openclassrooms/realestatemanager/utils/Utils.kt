@@ -1,4 +1,4 @@
-package com.openclassrooms.realestatemanager
+package com.openclassrooms.realestatemanager.utils
 
 import android.content.Context
 import android.location.Location
@@ -63,14 +63,5 @@ object Utils {
     fun getLatLng(location:Location): LatLng {
         return LatLng(location.latitude, location.longitude)
     }
-
-}
-
-fun ImageView.loadMap(lat: Double, lng: Double) {
-    val urlLocation = encode("$lat,$lng", "UTF-8")
-    Glide.with(this)
-        .load("https://maps.googleapis.com/maps/api/staticmap?center=$urlLocation&zoom=13&size=700x500&markers=color:red%7label:C%7C$urlLocation&maptype=roadmap&key=$GOOGLE_KEY")
-        .into(this)
-
 
 }

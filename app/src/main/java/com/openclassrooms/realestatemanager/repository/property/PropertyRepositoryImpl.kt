@@ -35,7 +35,7 @@ class PropertyRepositoryImpl @Inject constructor(
     }
 
     override fun addProperty(property: UiPropertyDetail): Completable {
-        return api.getLocation(property.address)
+        return api.getLocation(property.address.toString())
             .map {
                 val location = it.results[0].geometry.location
                 property.copy(lat = location.lat, lng = location.lng)

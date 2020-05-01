@@ -1,13 +1,12 @@
 package com.openclassrooms.realestatemanager.ui.map
 
-import com.openclassrooms.realestatemanager.Utils
+import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.manager.location.LocationManager
 import com.openclassrooms.realestatemanager.repository.property.PropertyRepository
 import com.openclassrooms.realestatemanager.ui.MainViewPresenter
 import com.openclassrooms.realestatemanager.ui.map.model.UiMarkerModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
