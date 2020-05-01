@@ -39,8 +39,6 @@ abstract class LocationPermissionActivity : DaggerAppCompatActivity() {
         )
     }
 
-    abstract fun requestLocation()
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -54,7 +52,6 @@ abstract class LocationPermissionActivity : DaggerAppCompatActivity() {
                 ) {
                     requestDialog?.dismiss()
 
-                    requestLocation()
                 } else {
                     showRationaleForPermissions()
                 }
@@ -105,7 +102,7 @@ abstract class LocationPermissionActivity : DaggerAppCompatActivity() {
     override fun onStart() {
         super.onStart()
         requestDialog?.dismiss()
-        if (!permissionsGranted()) requestPermissions() else requestLocation()
+        if (!permissionsGranted()) requestPermissions()
 
     }
 

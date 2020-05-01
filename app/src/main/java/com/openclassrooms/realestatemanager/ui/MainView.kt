@@ -10,5 +10,6 @@ interface MainView {
     fun showToast(msg: String)
     fun navigateBack()
     fun fromSearchToResult(searchParams: PropertySearchParams)
+    fun fromSearchResultToDetails(id: Int)
 
 }

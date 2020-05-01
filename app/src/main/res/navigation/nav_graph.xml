@@ -80,10 +80,13 @@
     <fragment
         android:id="@+id/searchResultFragment"
         android:name="com.openclassrooms.realestatemanager.ui.searchResult.SearchResultFragment"
-        android:label="fragment_search_result"
+        android:label="Search Result"
         tools:layout="@layout/fragment_search_result" >
         <argument
             android:name="searchParams"
             app:argType="com.openclassrooms.realestatemanager.ui.searchProperty.model.PropertySearchParams" />
+        <action
+            android:id="@+id/actionToSearchResultToDetails"
+            app:destination="@id/propertyDetailsFragment" />
     </fragment>
 </navigation>

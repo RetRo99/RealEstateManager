@@ -20,6 +20,10 @@ class MainPresenterImpl @Inject constructor(
         view.fromSearchToResult(searchParams)
     }
 
+    override fun fromSearchResultToDetails(id: Int) {
+        view.fromSearchResultToDetails(id)
+    }
+
     override fun onPropertyClicked(id: Int) {
         view.fromListToDetails(id)
     }

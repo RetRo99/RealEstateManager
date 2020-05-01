@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.android.gms.maps.model.LatLng
+import com.openclassrooms.realestatemanager.ui.searchProperty.model.PropertySearchParams
 import com.squareup.moshi.JsonClass
 
 @Entity(tableName = UiPropertyDetail.TABLE_NAME)
@@ -44,6 +45,10 @@ data class UiPropertyDetail(
         get() {
             return LatLng(lat, lng)
         }
+
+    fun matchesCriteria(params:PropertySearchParams):Boolean{
+        return true
+    }
 
     companion object {
         const val TABLE_NAME = "property_details_table"

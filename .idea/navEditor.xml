@@ -22,6 +22,15 @@
                             <option name="y" value="-63" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="actionToList">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
@@ -128,6 +137,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="searchResultFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="352" />
+                            <option name="y" value="-330" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

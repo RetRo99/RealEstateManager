@@ -4,4 +4,6 @@ import com.openclassrooms.realestatemanager.ui.searchProperty.model.PropertySear
 
 interface SearchResultPresenter {
     fun onViewCreated(searchParams: PropertySearchParams)
+    fun onDestroy()
+    fun onProperyClicked(id: Int)
 }

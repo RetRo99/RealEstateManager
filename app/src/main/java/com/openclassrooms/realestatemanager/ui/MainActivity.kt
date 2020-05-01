@@ -193,9 +193,9 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
         getNavController().navigate(PropertySearchFragmentDirections.actionToSearchResult(searchParams))
     }
 
-
-    override fun requestLocation() {
-        // TODO not implemented
+    override fun fromSearchResultToDetails(id: Int) {
+        currentId = id
+        getNavController().navigate(SearchResultFragmentDirections.actionToSearchResultToDetails(id))
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

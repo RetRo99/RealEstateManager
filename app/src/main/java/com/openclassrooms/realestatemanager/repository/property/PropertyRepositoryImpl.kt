@@ -4,6 +4,7 @@ import android.util.Log
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
 import com.openclassrooms.realestatemanager.database.property.PropertyDao
 import com.openclassrooms.realestatemanager.retrofit.GeocodingApi
+import com.openclassrooms.realestatemanager.ui.searchProperty.model.PropertySearchParams
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -46,6 +47,17 @@ class PropertyRepositoryImpl @Inject constructor(
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    override fun getSearchProperties(searchParams: PropertySearchParams): Observable<List<UiPropertyDetail>> {
+        return propertyDao.getProperties()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .map {
+                it.filter {propertyDetail ->
+                    propertyDetail.matchesCriteria(searchParams)
+                }
+            }
     }
 
 

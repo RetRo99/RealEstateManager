@@ -63,6 +63,7 @@
     <string name="Until">Until</string>
     <string name="details_sold_date">Sold Date</string>
     <string name="details_mark_as_sold">Mark as sold</string>
+    <string name="error_no_results">No search results</string>
     <string-array name="property_min_photos_array">
         <item>1</item>
         <item>2</item>

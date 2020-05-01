@@ -8,4 +8,5 @@ interface MainViewPresenter {
     fun onMarkerClicked(id: Int)
     fun navigateBack()
     fun fromSearchToResult(searchParams: PropertySearchParams)
+    fun fromSearchResultToDetails(id: Int)
 }
