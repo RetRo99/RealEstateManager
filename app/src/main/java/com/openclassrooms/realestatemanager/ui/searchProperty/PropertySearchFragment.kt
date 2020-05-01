@@ -69,7 +69,8 @@ class PropertySearchFragment : DaggerFragment(), PropertySearchView {
             etCity.text.toString(),
             spinnerPhotos.selectedItemPosition + 1,
             etPriceMax.text.toString(),
-            etPriceMin.text.toString()
+            etPriceMin.text.toString(),
+            rbIncludeSold.isChecked
 
         )
     }

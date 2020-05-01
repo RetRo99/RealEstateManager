@@ -5,7 +5,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.android.gms.maps.model.LatLng
 import com.openclassrooms.realestatemanager.ui.searchProperty.model.PropertySearchParams
+import com.openclassrooms.realestatemanager.utils.Utils
 import com.squareup.moshi.JsonClass
+import java.util.*
 
 @Entity(tableName = UiPropertyDetail.TABLE_NAME)
 data class UiPropertyDetail(
@@ -46,7 +48,51 @@ data class UiPropertyDetail(
             return LatLng(lat, lng)
         }
 
-    fun matchesCriteria(params:PropertySearchParams):Boolean{
+    fun matchesCriteria(params: PropertySearchParams): Boolean {
+        if (params.type != type) {
+            return false
+        }
+
+        if (params.priceMin.isNotEmpty()) {
+            if (params.priceMin.toDouble() < price) {
+                return false
+            }
+        }
+
+        if (params.priceMax.isNotEmpty()) {
+            if (params.priceMax.toDouble() > price) {
+                return false
+            }
+        }
+        if (params.interestPoints.isNotEmpty()) {
+            if (Collections.disjoint(interestPoints, params.interestPoints)) {
+                return false
+            }
+        }
+
+        if (params.fromDate.isNotEmpty()) {
+            if (Utils.isFirstDateAfterSecond(params.fromDate, publishedDate)) {
+                return false
+            }
+        }
+        if (params.toDate.isNotEmpty()) {
+            if (Utils.isFirstDateAfterSecond(publishedDate, params.toDate)) {
+                return false
+            }
+        }
+        if (params.city.isNotEmpty()) {
+            if (params.city !in address.city) {
+                return false
+            }
+        }
+        if (params.minPhotos > photos.size) {
+            return false
+        }
+        if (!params.includeSold) {
+            if (isSold) {
+                return false
+            }
+        }
         return true
     }
 
