@@ -4,4 +4,6 @@ import androidx.fragment.app.Fragment
 import dagger.Binds
 import dagger.Module
 
-interface PropertySearchPresenter
+interface PropertySearchPresenter {
+    fun onSearchClicked()
+}

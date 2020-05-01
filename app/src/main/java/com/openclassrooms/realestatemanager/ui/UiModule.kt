@@ -10,6 +10,8 @@ import com.openclassrooms.realestatemanager.ui.propertyList.PropertyListFragment
 import com.openclassrooms.realestatemanager.ui.propertyList.PropertyListModule
 import com.openclassrooms.realestatemanager.ui.searchProperty.PropertySearchFragment
 import com.openclassrooms.realestatemanager.ui.searchProperty.PropertySearchModule
+import com.openclassrooms.realestatemanager.ui.searchResult.SearchResultFragment
+import com.openclassrooms.realestatemanager.ui.searchResult.SearchResultModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -30,5 +32,8 @@ internal interface UiModule {
 
     @ContributesAndroidInjector(modules = [PropertySearchModule::class])
     fun contribPropertySearchFragmentInjector(): PropertySearchFragment
+
+    @ContributesAndroidInjector(modules = [SearchResultModule::class])
+    fun contribPropertySearchResultFragmentInjector(): SearchResultFragment
 
 }

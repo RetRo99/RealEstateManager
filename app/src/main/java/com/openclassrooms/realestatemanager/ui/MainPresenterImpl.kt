@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager.ui
 
+import com.openclassrooms.realestatemanager.ui.searchProperty.model.PropertySearchParams
 import javax.inject.Inject
 
 class MainPresenterImpl @Inject constructor(
@@ -13,6 +14,10 @@ class MainPresenterImpl @Inject constructor(
 
     override fun navigateBack() {
         view.navigateBack()
+    }
+
+    override fun fromSearchToResult(searchParams: PropertySearchParams) {
+        view.fromSearchToResult(searchParams)
     }
 
     override fun onPropertyClicked(id: Int) {

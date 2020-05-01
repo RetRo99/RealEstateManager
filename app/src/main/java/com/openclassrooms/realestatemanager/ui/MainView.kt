@@ -1,5 +1,7 @@
 package com.openclassrooms.realestatemanager.ui
 
+import com.openclassrooms.realestatemanager.ui.searchProperty.model.PropertySearchParams
+
 
 interface MainView {
 
@@ -7,5 +9,6 @@ interface MainView {
     fun fromMapToDetails(id: Int)
     fun showToast(msg: String)
     fun navigateBack()
+    fun fromSearchToResult(searchParams: PropertySearchParams)
 
 }

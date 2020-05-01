@@ -1,5 +1,7 @@
 package com.openclassrooms.realestatemanager.ui.searchProperty
 
-interface PropertySearchView {
+import com.openclassrooms.realestatemanager.ui.searchProperty.model.PropertySearchParams
 
+interface PropertySearchView {
+    fun getSearchParams():PropertySearchParams
 }

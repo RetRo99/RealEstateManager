@@ -285,9 +285,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvMinimalPhotos" />
 
-        <Spinner
-            android:id="@+id/spinnerPriceMin"
-            style="@style/Widget.AppCompat.Spinner.Underlined"
+        <EditText
+            android:id="@+id/etPriceMin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -303,11 +302,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/min"
-            app:layout_constraintBottom_toBottomOf="@+id/spinnerPriceMin"
-            app:layout_constraintEnd_toStartOf="@+id/spinnerPriceMin"
+            app:layout_constraintBottom_toBottomOf="@+id/etPriceMin"
+            app:layout_constraintEnd_toStartOf="@+id/etPriceMin"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/spinnerPriceMin" />
+            app:layout_constraintTop_toTopOf="@+id/etPriceMin" />
 
         <TextView
             android:id="@+id/tvPriceMax"
@@ -315,15 +314,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/max"
-            app:layout_constraintBottom_toBottomOf="@+id/spinnerPriceMax"
-            app:layout_constraintEnd_toStartOf="@+id/spinnerPriceMax"
+            app:layout_constraintBottom_toBottomOf="@+id/etPriceMax"
+            app:layout_constraintEnd_toStartOf="@+id/etPriceMax"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/spinnerPriceMin"
-            app:layout_constraintTop_toTopOf="@+id/spinnerPriceMax" />
+            app:layout_constraintStart_toEndOf="@+id/etPriceMin"
+            app:layout_constraintTop_toTopOf="@+id/etPriceMax" />
 
-        <Spinner
-            android:id="@+id/spinnerPriceMax"
-            style="@style/Widget.AppCompat.Spinner.Underlined"
+        <EditText
+            android:id="@+id/etPriceMax"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -334,21 +332,8 @@
             app:layout_constraintStart_toEndOf="@+id/tvPriceMax"
             app:layout_constraintTop_toBottomOf="@+id/tvPrice" />
 
-        <EditText
-            android:id="@+id/etDateSold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:hint="@string/date_format"
-            android:focusable="false"
-            app:layout_constraintBottom_toBottomOf="@+id/rbIncludeSold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/rbIncludeSold"
-            app:layout_constraintTop_toTopOf="@+id/rbIncludeSold" />
-
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/research_button"
+            android:id="@+id/btnSearch"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -63,7 +63,11 @@
     <fragment
         android:id="@+id/navigation_search"
         android:name="com.openclassrooms.realestatemanager.ui.searchProperty.PropertySearchFragment"
-        android:label="PropertySearchFragment"/>
+        android:label="PropertySearchFragment">
+        <action
+            android:id="@+id/actionToSearchResult"
+            app:destination="@id/searchResultFragment" />
+    </fragment>
     <fragment
         android:id="@+id/blankFragment"
         android:name="com.openclassrooms.realestatemanager.ui.blankFragment.BlankFragment"
@@ -72,5 +76,14 @@
         <action
             android:id="@+id/actionToList"
             app:destination="@id/navigation_list" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="com.openclassrooms.realestatemanager.ui.searchResult.SearchResultFragment"
+        android:label="fragment_search_result"
+        tools:layout="@layout/fragment_search_result" >
+        <argument
+            android:name="searchParams"
+            app:argType="com.openclassrooms.realestatemanager.ui.searchProperty.model.PropertySearchParams" />
     </fragment>
 </navigation>

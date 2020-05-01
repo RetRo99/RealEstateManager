@@ -18,6 +18,10 @@ import com.openclassrooms.realestatemanager.base.LocationPermissionActivity
 import com.openclassrooms.realestatemanager.ui.map.MapFragmentDirections
 import com.openclassrooms.realestatemanager.ui.propertyDetails.PropertyDetailsFragmentDirections
 import com.openclassrooms.realestatemanager.ui.propertyList.PropertyListFragmentDirections
+import com.openclassrooms.realestatemanager.ui.searchProperty.PropertySearchFragmentDirections
+import com.openclassrooms.realestatemanager.ui.searchProperty.model.PropertySearchParams
+import com.openclassrooms.realestatemanager.ui.searchResult.SearchResultFragmentArgs
+import com.openclassrooms.realestatemanager.ui.searchResult.SearchResultFragmentDirections
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -183,6 +187,10 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
 
     override fun navigateBack() {
         getNavController().navigateUp()
+    }
+
+    override fun fromSearchToResult(searchParams: PropertySearchParams) {
+        getNavController().navigate(PropertySearchFragmentDirections.actionToSearchResult(searchParams))
     }
 
 
