@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import com.openclassrooms.realestatemanager.R
@@ -40,8 +41,15 @@ class PropertyDetailsFragment : DaggerFragment(), PropertyDetailsView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        btnMarkSold.setOnClickListener{
+            presenter.onMarkSoldClicked()
+        }
         adapter = PhotoAdapter(false)
         presenter.onViewCreated(args.id)
+    }
+
+    override fun showToast(msg: Int) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
     }
 
     override fun setPhotos(photos: List<String>) {
@@ -61,6 +69,15 @@ class PropertyDetailsFragment : DaggerFragment(), PropertyDetailsView {
             tvAddress.text = address.toString()
             tvPublishedDate.text = publishedDate
             ivStaticMap.loadMap(lat, lng)
+            if(isSold){
+                titleSoldDate.visibility = View.VISIBLE
+                tvSoldDate.visibility = View.VISIBLE
+                btnMarkSold.visibility = View.GONE
+                tvSoldDate.text = soldDate
+            }else{
+                titleSoldDate.visibility = View.GONE
+                tvSoldDate.visibility = View.GONE
+            }
         }
     }
 

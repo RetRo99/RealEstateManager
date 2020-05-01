@@ -60,7 +60,6 @@
 
         <EditText
             android:id="@+id/etSurfaceMin"
-            style="@style/Widget.AppCompat.Spinner.Underlined"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -72,7 +71,6 @@
 
         <EditText
             android:id="@+id/etSurfaceMax"
-            style="@style/Widget.AppCompat.Spinner.Underlined"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -258,8 +256,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-
-            android:dropDownWidth="match_parent"
+            android:entries="@array/property_min_photos_array"
+            android:dropDownWidth="50dp"
             app:layout_constraintStart_toEndOf="@+id/tvMinimalPhotos"
             app:layout_constraintTop_toTopOf="@+id/tvMinimalPhotos" />
 

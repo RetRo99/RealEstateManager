@@ -33,7 +33,11 @@ data class UiPropertyDetail(
     @ColumnInfo(name = LAT)
     val lat: Double = 0.0,
     @ColumnInfo(name = LNG)
-    val lng: Double = 0.0
+    val lng: Double = 0.0,
+    @ColumnInfo(name = IS_SOLD)
+    val isSold: Boolean = false ,
+    @ColumnInfo(name = SOLD_DATE)
+    val soldDate: String = ""
 ) {
 
     val latLng: LatLng
@@ -55,6 +59,8 @@ data class UiPropertyDetail(
         const val PUBLISHED_DATE = "published_date"
         const val LAT = "lat"
         const val LNG = "lng"
+        const val IS_SOLD = "is_sold"
+        const val SOLD_DATE = "sold_date"
 
 
     }
