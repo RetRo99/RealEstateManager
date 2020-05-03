@@ -70,13 +70,11 @@ class PropertyDetailsFragment : DaggerFragment(), PropertyDetailsView {
             tvPublishedDate.text = publishedDate
             ivStaticMap.loadMap(lat, lng)
             if(isSold){
-                titleSoldDate.visibility = View.VISIBLE
-                tvSoldDate.visibility = View.VISIBLE
+                soldDateLayout.visibility = View.VISIBLE
                 btnMarkSold.visibility = View.GONE
                 tvSoldDate.text = soldDate
             }else{
-                titleSoldDate.visibility = View.GONE
-                tvSoldDate.visibility = View.GONE
+                soldDateLayout.visibility = View.GONE
             }
         }
     }

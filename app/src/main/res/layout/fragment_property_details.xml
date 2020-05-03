@@ -301,6 +301,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/soldDateLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -313,16 +314,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnMarkSold"
-                    android:layout_width="match_parent"
-                    style="@style/Widget.MaterialComponents.Button"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="24dp"
-                    android:text="@string/details_mark_as_sold"
-                    />
 
                 <TextView
                     android:id="@+id/titleSoldDate"
@@ -340,6 +331,15 @@
                     android:textSize="16sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMarkSold"
+            android:layout_width="match_parent"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:text="@string/details_mark_as_sold"
+            />
 
 
     </LinearLayout>
