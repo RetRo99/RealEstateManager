@@ -70,16 +70,6 @@ data class UiPropertyDetail(
             }
         }
 
-        if (params.fromDate.isNotEmpty()) {
-            if (Utils.isFirstDateAfterSecond(params.fromDate, publishedDate)) {
-                return false
-            }
-        }
-        if (params.toDate.isNotEmpty()) {
-            if (Utils.isFirstDateAfterSecond(publishedDate, params.toDate)) {
-                return false
-            }
-        }
         if (params.city.isNotEmpty()) {
             if (params.city !in address.city) {
                 return false
@@ -91,6 +81,28 @@ data class UiPropertyDetail(
         if (params.showOnlySold) {
             if (!isSold) {
                 return false
+            } else {
+                if (params.fromDate.isNotEmpty()) {
+                    if (Utils.isFirstDateAfterSecond(params.fromDate, soldDate)) {
+                        return false
+                    }
+                }
+                if (params.toDate.isNotEmpty()) {
+                    if (Utils.isFirstDateAfterSecond(soldDate, params.toDate)) {
+                        return false
+                    }
+                }
+            }
+        } else {
+            if (params.fromDate.isNotEmpty()) {
+                if (Utils.isFirstDateAfterSecond(params.fromDate, publishedDate)) {
+                    return false
+                }
+            }
+            if (params.toDate.isNotEmpty()) {
+                if (Utils.isFirstDateAfterSecond(publishedDate, params.toDate)) {
+                    return false
+                }
             }
         }
         return true
