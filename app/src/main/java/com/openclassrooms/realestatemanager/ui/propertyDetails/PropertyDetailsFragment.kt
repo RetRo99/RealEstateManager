@@ -45,7 +45,9 @@ class PropertyDetailsFragment : DaggerFragment(), PropertyDetailsView {
         btnMarkSold.setOnClickListener{
             presenter.onMarkSoldClicked()
         }
-        adapter = PhotoAdapter(false)
+        adapter = PhotoAdapter(false, actionGoToPhotos = {
+            presenter.onPhotoClicked()
+        })
         presenter.onViewCreated(args.id)
     }
 

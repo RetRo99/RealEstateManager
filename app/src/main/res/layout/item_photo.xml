@@ -13,7 +13,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/ivUri"
+            android:id="@+id/ivPhoto"
             android:layout_width="100dp"
             android:layout_height="100dp"
             card_view:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            android:background="#2FFF"
+            android:background="#5FFF"
             android:src="@drawable/ic_close"
             android:visibility="gone" />
 
@@ -37,10 +37,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            card_view:layout_constraintBottom_toBottomOf="@id/ivUri"
+            card_view:layout_constraintBottom_toBottomOf="@id/ivPhoto"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            android:background="#2FFF"
+            android:background="#5FFF"
             android:gravity="center"
             />
 

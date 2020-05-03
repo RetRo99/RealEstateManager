@@ -21,6 +21,7 @@ import com.google.android.material.navigation.NavigationView
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.LocationPermissionActivity
 import com.openclassrooms.realestatemanager.ui.map.MapFragmentDirections
+import com.openclassrooms.realestatemanager.ui.propertyAdd.model.UiPropertyDetailsPhotoItem
 import com.openclassrooms.realestatemanager.ui.propertyDetails.PropertyDetailsFragmentDirections
 import com.openclassrooms.realestatemanager.ui.propertyList.PropertyListFragmentDirections
 import com.openclassrooms.realestatemanager.ui.searchProperty.PropertySearchFragmentDirections
@@ -245,6 +246,10 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
             }
             .create()
             .show()
+    }
+
+    override fun fromDetailsToPhotos(photos: Array<UiPropertyDetailsPhotoItem>) {
+        getNavController().navigate(PropertyDetailsFragmentDirections.actionDetailsToPhotos(photos))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -3,6 +3,7 @@ package com.openclassrooms.realestatemanager.ui.propertyDetails
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
 import com.openclassrooms.realestatemanager.repository.property.PropertyRepository
+import com.openclassrooms.realestatemanager.ui.MainViewPresenter
 import com.openclassrooms.realestatemanager.utils.Utils
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
@@ -10,8 +11,8 @@ import javax.inject.Inject
 
 class PropertyDetailsPresenterImpl @Inject constructor(
     private val view: PropertyDetailsView,
-    private val propertyRepository: PropertyRepository
-
+    private val propertyRepository: PropertyRepository,
+    private val parentPresenter: MainViewPresenter
 ) : PropertyDetailsPresenter {
 
     private var disposable: Disposable? = null
@@ -45,6 +46,10 @@ class PropertyDetailsPresenterImpl @Inject constructor(
                     view.showToast(R.string.error_something_wrong)
                 }
             )
+    }
+
+    override fun onPhotoClicked() {
+        parentPresenter.fromDetailsToPhoto(property.photos.toTypedArray())
     }
 
     private fun getProperty() {

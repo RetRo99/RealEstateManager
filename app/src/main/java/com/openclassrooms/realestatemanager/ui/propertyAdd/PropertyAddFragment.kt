@@ -59,9 +59,9 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
             presenter.onAddPhotoClicked()
         }
 
-        adapter = PhotoAdapter {
+        adapter = PhotoAdapter(actionDelete = {
             presenter.onRemovePhotoClicked(it)
-        }
+        })
         rvPhotos.adapter = adapter
 
         presenter.onViewCreated(args.id)

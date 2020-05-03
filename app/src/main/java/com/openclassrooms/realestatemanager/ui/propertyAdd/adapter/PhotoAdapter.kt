@@ -9,7 +9,8 @@ import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.ui.propertyAdd.model.UiPropertyDetailsPhotoItem
 import kotlinx.android.synthetic.main.item_photo.view.*
 
-class PhotoAdapter(private val isDetails :Boolean = true, private val action: ((Int) -> (Unit))? = null) :
+class PhotoAdapter(private val isDetails :Boolean = true, private val actionDelete: ((Int) -> (Unit))? = null,
+private val actionGoToPhotos: (() -> (Unit))? = null):
     RecyclerView.Adapter<PhotoAdapter.PhotoHolder>() {
 
     private var data = listOf<UiPropertyDetailsPhotoItem>()
@@ -36,14 +37,18 @@ class PhotoAdapter(private val isDetails :Boolean = true, private val action: ((
         fun bind(item: UiPropertyDetailsPhotoItem, position: Int) {
 
             view.run{
-                ivUri.setImageBitmap(BitmapFactory.decodeFile(item.photo))
+                ivPhoto.setImageBitmap(BitmapFactory.decodeFile(item.photo))
                 tvPhotoTitle.text = item.title
                 if(isDetails){
                    ivDeleteUri.visibility = View.VISIBLE
                    ivDeleteUri.setOnClickListener {
-                       action!!(position)
+                       actionDelete!!(position)
                    }
-               }
+               }else{
+                    setOnClickListener {
+                        actionGoToPhotos!!()
+                    }
+                }
 
             }
         }

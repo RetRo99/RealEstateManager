@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager.ui
 
+import com.openclassrooms.realestatemanager.ui.propertyAdd.model.UiPropertyDetailsPhotoItem
 import com.openclassrooms.realestatemanager.ui.searchProperty.model.PropertySearchParams
 
 interface MainViewPresenter {
@@ -14,5 +15,6 @@ interface MainViewPresenter {
     fun onLoginFailed()
     fun onLogout()
     fun onLogoutConfirmed()
+    fun fromDetailsToPhoto(photos: Array<UiPropertyDetailsPhotoItem>)
 
 }

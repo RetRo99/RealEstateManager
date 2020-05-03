@@ -2,6 +2,8 @@ package com.openclassrooms.realestatemanager.ui
 
 import com.openclassrooms.realestatemanager.ui.map.MapFragment
 import com.openclassrooms.realestatemanager.ui.map.MapModule
+import com.openclassrooms.realestatemanager.ui.photoFragment.PhotoFragment
+import com.openclassrooms.realestatemanager.ui.photoFragment.PhotoFragmentModule
 import com.openclassrooms.realestatemanager.ui.propertyAdd.PropertyAddFragment
 import com.openclassrooms.realestatemanager.ui.propertyAdd.PropertyAddModule
 import com.openclassrooms.realestatemanager.ui.propertyDetails.PropertyDetailsFragment
@@ -35,5 +37,8 @@ internal interface UiModule {
 
     @ContributesAndroidInjector(modules = [SearchResultModule::class])
     fun contribPropertySearchResultFragmentInjector(): SearchResultFragment
+
+    @ContributesAndroidInjector(modules = [PhotoFragmentModule::class])
+    fun contribPhotoFragmentInjector(): PhotoFragment
 
 }

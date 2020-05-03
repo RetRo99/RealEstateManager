@@ -1,6 +1,7 @@
 package com.openclassrooms.realestatemanager.ui
 
 import com.openclassrooms.realestatemanager.manager.auth.FirebaseAuthManager
+import com.openclassrooms.realestatemanager.ui.propertyAdd.model.UiPropertyDetailsPhotoItem
 import com.openclassrooms.realestatemanager.ui.searchProperty.model.PropertySearchParams
 import javax.inject.Inject
 
@@ -37,6 +38,10 @@ class MainPresenterImpl @Inject constructor(
 
     override fun onCreate() {
         if (auth.isUserLogged()) view.setupScreen() else view.requestLogin()
+    }
+
+    override fun fromDetailsToPhoto(photos: Array<UiPropertyDetailsPhotoItem>) {
+        view.fromDetailsToPhotos(photos)
     }
 
     override fun fromSearchToResult(searchParams: PropertySearchParams) {
