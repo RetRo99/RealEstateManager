@@ -1,6 +1,5 @@
 package com.openclassrooms.realestatemanager.repository.property
 
-import android.util.Log
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
 import com.openclassrooms.realestatemanager.database.property.PropertyDao
 import com.openclassrooms.realestatemanager.retrofit.GeocodingApi

@@ -54,13 +54,24 @@ data class UiPropertyDetail(
         }
 
         if (params.priceMin.isNotEmpty()) {
-            if (params.priceMin.toDouble() < price) {
+            if (price > params.priceMin.toDouble()) {
                 return false
             }
         }
 
         if (params.priceMax.isNotEmpty()) {
-            if (params.priceMax.toDouble() > price) {
+            if (price > params.priceMax.toDouble()) {
+                return false
+            }
+        }
+        if (params.minSize.isNotEmpty()) {
+            if (surface.toDouble() > params.minSize.toDouble()) {
+                return false
+            }
+        }
+
+        if (params.maxSize.isNotEmpty()) {
+            if (surface.toDouble() > params.maxSize.toDouble()) {
                 return false
             }
         }
