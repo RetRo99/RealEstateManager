@@ -3,6 +3,7 @@ package com.openclassrooms.realestatemanager.ui.propertyAdd
 import android.util.Log
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
+import com.openclassrooms.realestatemanager.manager.notificationManager.NotificationHelper
 import com.openclassrooms.realestatemanager.repository.property.PropertyRepository
 import com.openclassrooms.realestatemanager.ui.MainViewPresenter
 import com.openclassrooms.realestatemanager.ui.propertyAdd.model.UiPropertyDetailsPhotoItem
@@ -17,7 +18,8 @@ class PropertyAddPresenterImpl @Inject constructor(
     private val view: PropertyAddView,
     private val propertyRepository: PropertyRepository,
     private val parentPresenter: MainViewPresenter,
-    private val propertyFormatter : PropertyFormatter
+    private val propertyFormatter : PropertyFormatter,
+    private val notificationHelper:NotificationHelper
 
 ):PropertyAddPresenter {
 
@@ -35,6 +37,7 @@ class PropertyAddPresenterImpl @Inject constructor(
     }
 
     private fun updateProperty() {
+        notificationHelper.createUpdatedNotification()
         propertyRepository.updateProperty(property.copy(photos = photos, id = currentId))
             .subscribeBy(
                 onError = {
@@ -48,6 +51,7 @@ class PropertyAddPresenterImpl @Inject constructor(
     }
 
     private fun addProperty() {
+        notificationHelper.createAddedNotification()
         propertyRepository.addProperty(
             property.copy(
                 photos = photos
