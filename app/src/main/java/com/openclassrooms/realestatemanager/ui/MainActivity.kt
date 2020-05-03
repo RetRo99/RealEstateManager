@@ -1,5 +1,7 @@
 package com.openclassrooms.realestatemanager.ui
 
+import android.app.Activity
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
@@ -12,15 +14,17 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
+import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.IdpResponse
 import com.google.android.material.navigation.NavigationView
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.LocationPermissionActivity
+import com.openclassrooms.realestatemanager.manager.auth.FirebaseAuthManager
 import com.openclassrooms.realestatemanager.ui.map.MapFragmentDirections
 import com.openclassrooms.realestatemanager.ui.propertyDetails.PropertyDetailsFragmentDirections
 import com.openclassrooms.realestatemanager.ui.propertyList.PropertyListFragmentDirections
 import com.openclassrooms.realestatemanager.ui.searchProperty.PropertySearchFragmentDirections
 import com.openclassrooms.realestatemanager.ui.searchProperty.model.PropertySearchParams
-import com.openclassrooms.realestatemanager.ui.searchResult.SearchResultFragmentArgs
 import com.openclassrooms.realestatemanager.ui.searchResult.SearchResultFragmentDirections
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -35,6 +39,9 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
     @Inject
     lateinit var presenter: MainViewPresenter
 
+    @Inject
+    lateinit var auth: FirebaseAuthManager
+
     private var isLandscapeLayout: Boolean = false
 
     private var menu: Menu? = null
@@ -42,12 +49,32 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        if (auth.isUserLogged()) setupScreen() else requestLogin()
+
+
+    }
+
+    private fun requestLogin() {
+        val providers = arrayListOf(
+            AuthUI.IdpConfig.EmailBuilder().build()
+        )
+        startActivityForResult(
+            AuthUI.getInstance()
+                .createSignInIntentBuilder()
+
+                .setIsSmartLockEnabled(false)
+                .setAvailableProviders(providers)
+                .build(),
+            LOGIN_REQUEST_CODE
+
+
+        )
+    }
+
+    private fun setupScreen() {
 
         isLandscapeLayout =
             resources.getBoolean(R.bool.isTablet) || resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-
-
-
         when {
             isLandscapeLayout -> {
                 Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show()
@@ -227,6 +254,8 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
 
     companion object {
         var currentId: Int = 0
+        private const val LOGIN_REQUEST_CODE = 69
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -238,5 +267,20 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
     override fun onBackPressed() {
         if (!getNavController().navigateUp()) super.onBackPressed()
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == LOGIN_REQUEST_CODE) {
+            val response = IdpResponse.fromResultIntent(data)
+
+            if (resultCode == Activity.RESULT_OK) {
+                setupScreen()
+            } else {
+                requestLogin()
+            }
+        }
+    }
+
 }
 
