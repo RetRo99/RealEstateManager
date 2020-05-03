@@ -64,6 +64,7 @@
     <string name="details_sold_date">Sold Date</string>
     <string name="details_mark_as_sold">Mark as sold</string>
     <string name="error_no_results">No search results</string>
+    <string name="menu_logout">Logout</string>
     <string-array name="property_min_photos_array">
         <item>1</item>
         <item>2</item>
@@ -74,4 +75,8 @@
         <item>6</item>
         <item>7</item>
     </string-array>
+    <string name="dialog_logout_title">Are you sure you want to logout?</string>
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_no">No</string>
+
 </resources>

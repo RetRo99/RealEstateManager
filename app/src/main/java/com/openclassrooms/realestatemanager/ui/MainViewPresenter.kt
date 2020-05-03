@@ -9,4 +9,10 @@ interface MainViewPresenter {
     fun navigateBack()
     fun fromSearchToResult(searchParams: PropertySearchParams)
     fun fromSearchResultToDetails(id: Int)
+    fun onCreate()
+    fun onLoginSuccess()
+    fun onLoginFailed()
+    fun onLogout()
+    fun onLogoutConfirmed()
+
 }

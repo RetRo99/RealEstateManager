@@ -11,5 +11,8 @@ interface MainView {
     fun navigateBack()
     fun fromSearchToResult(searchParams: PropertySearchParams)
     fun fromSearchResultToDetails(id: Int)
+    fun setupScreen()
+    fun requestLogin()
+    fun showLogOutDialog()
 
 }

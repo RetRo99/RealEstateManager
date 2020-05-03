@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavGraph
 import androidx.navigation.ui.AppBarConfiguration
@@ -15,11 +16,9 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import com.firebase.ui.auth.AuthUI
-import com.firebase.ui.auth.IdpResponse
 import com.google.android.material.navigation.NavigationView
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.LocationPermissionActivity
-import com.openclassrooms.realestatemanager.manager.auth.FirebaseAuthManager
 import com.openclassrooms.realestatemanager.ui.map.MapFragmentDirections
 import com.openclassrooms.realestatemanager.ui.propertyDetails.PropertyDetailsFragmentDirections
 import com.openclassrooms.realestatemanager.ui.propertyList.PropertyListFragmentDirections
@@ -39,8 +38,7 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
     @Inject
     lateinit var presenter: MainViewPresenter
 
-    @Inject
-    lateinit var auth: FirebaseAuthManager
+
 
     private var isLandscapeLayout: Boolean = false
 
@@ -49,12 +47,12 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (auth.isUserLogged()) setupScreen() else requestLogin()
+        presenter.onCreate()
 
 
     }
 
-    private fun requestLogin() {
+    override fun requestLogin() {
         val providers = arrayListOf(
             AuthUI.IdpConfig.EmailBuilder().build()
         )
@@ -71,7 +69,7 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
         )
     }
 
-    private fun setupScreen() {
+    override fun setupScreen() {
 
         isLandscapeLayout =
             resources.getBoolean(R.bool.isTablet) || resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
@@ -227,9 +225,27 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.logout -> {
+                presenter.onLogout()
+            }
+            R.id.your_lunch -> {
+                presenter.onYourLunchClicked()
+            }
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun showLogOutDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.dialog_logout_title))
+            .setPositiveButton(getString(R.string.dialog_yes)) { _, _ ->
+                presenter.onLogoutConfirmed()
+            }
+            .setNegativeButton(getString(R.string.dialog_no)) { _, _ ->
+            }
+            .create()
+            .show()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -272,12 +288,10 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == LOGIN_REQUEST_CODE) {
-            val response = IdpResponse.fromResultIntent(data)
-
             if (resultCode == Activity.RESULT_OK) {
-                setupScreen()
+                presenter.onLoginSuccess()
             } else {
-                requestLogin()
+                presenter.onLoginFailed()
             }
         }
     }
