@@ -88,8 +88,8 @@ data class UiPropertyDetail(
         if (params.minPhotos > photos.size) {
             return false
         }
-        if (!params.includeSold) {
-            if (isSold) {
+        if (params.showOnlySold) {
+            if (!isSold) {
                 return false
             }
         }

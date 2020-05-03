@@ -15,5 +15,5 @@ data class PropertySearchParams(
     val minPhotos: Int,
     val priceMax: String,
     val priceMin: String,
-    val includeSold:Boolean
+    val showOnlySold:Boolean
 ) : Parcelable

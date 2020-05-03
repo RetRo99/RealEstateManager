@@ -53,7 +53,7 @@
     <string name="error_something_wrong_address">Did you enter correct address?</string>
     <string name="min">Min</string>
     <string name="max">Max</string>
-    <string name="sold">Include Sold</string>
+    <string name="sold">Show only sold</string>
     <string name="city">City</string>
     <string name="number_of_photos_minimum">Minimal number of Photos</string>
     <string name="minMaxArea">Set minimal surface</string>
