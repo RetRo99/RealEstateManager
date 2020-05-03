@@ -228,10 +228,8 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
             R.id.logout -> {
                 presenter.onLogout()
             }
-            R.id.your_lunch -> {
-                presenter.onYourLunchClicked()
-            }
         }
+        item.onNavDestinationSelected(getNavController())
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
