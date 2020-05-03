@@ -1,5 +1,8 @@
 package com.openclassrooms.realestatemanager.utils
 
+import android.content.Context
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.openclassrooms.realestatemanager.base.Constants
@@ -13,3 +16,17 @@ fun ImageView.loadMap(lat: Double, lng: Double) {
 
 
 }
+
+fun View.showKeyboard() {
+    this.requestFocus()
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+}
+
+fun View.hideKeyboard() {
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
+    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+
+}
+

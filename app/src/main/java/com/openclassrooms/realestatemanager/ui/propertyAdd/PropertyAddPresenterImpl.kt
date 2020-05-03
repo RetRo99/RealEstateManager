@@ -5,6 +5,7 @@ import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
 import com.openclassrooms.realestatemanager.repository.property.PropertyRepository
 import com.openclassrooms.realestatemanager.ui.MainViewPresenter
+import com.openclassrooms.realestatemanager.ui.propertyAdd.model.UiPropertyDetailsPhotoItem
 import com.openclassrooms.realestatemanager.utils.PropertyFormatter
 import com.vansuita.pickimage.bean.PickResult
 import io.reactivex.disposables.CompositeDisposable
@@ -23,7 +24,7 @@ class PropertyAddPresenterImpl @Inject constructor(
     private var isEdit = false
 
     //handle rotate
-    private var photos = mutableListOf<String>()
+    private var photos = mutableListOf<UiPropertyDetailsPhotoItem>()
     private val compositeDisposable = CompositeDisposable()
     private var currentId = 0
     private lateinit var property: UiPropertyDetail
@@ -98,9 +99,12 @@ class PropertyAddPresenterImpl @Inject constructor(
         view.setPhotos(photos)
     }
 
-    override fun onImagePicked(result: PickResult?) {
+    override fun onImagePicked(
+        result: PickResult?,
+        title: String
+    ) {
         if (result != null) {
-            photos.add(result.path)
+            photos.add(UiPropertyDetailsPhotoItem(result.path, title))
             view.setPhotos(photos)
         }
     }

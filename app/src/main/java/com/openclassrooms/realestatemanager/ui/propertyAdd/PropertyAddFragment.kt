@@ -5,14 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.model.Address
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
 import com.openclassrooms.realestatemanager.ui.propertyAdd.adapter.PhotoAdapter
+import com.openclassrooms.realestatemanager.ui.propertyAdd.model.UiPropertyDetailsPhotoItem
 import com.openclassrooms.realestatemanager.utils.Utils
+import com.openclassrooms.realestatemanager.utils.hideKeyboard
+import com.openclassrooms.realestatemanager.utils.showKeyboard
+import com.vansuita.pickimage.bean.PickResult
 import com.vansuita.pickimage.bundle.PickSetup
 import com.vansuita.pickimage.dialog.PickImageDialog
 import dagger.android.support.DaggerFragment
@@ -60,7 +68,7 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
 
     }
 
-    override fun setPhotos(photos: List<String>) {
+    override fun setPhotos(photos: MutableList<UiPropertyDetailsPhotoItem>) {
         adapter.setData(photos)
     }
 
@@ -73,12 +81,46 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
         val setup = PickSetup()
             .setTitle("Pick Your image")
 
-
         PickImageDialog.build(setup)
             .setOnPickResult {
-                presenter.onImagePicked(it)
+                showImageTitleDialog(it)
             }
             .show(parentFragmentManager)
+    }
+
+    private fun showImageTitleDialog(result: PickResult) {
+
+        val etPhotoTitle = EditText(requireContext()).apply {
+            hint = "Enter Photo Title"
+            maxLines = 1
+        }
+        val dialogLayout = FrameLayout(requireContext()).apply {
+            setPaddingRelative(45, 15, 45, 0)
+            addView(etPhotoTitle)
+        }
+
+        val dialog = MaterialAlertDialogBuilder(requireContext())
+            .setPositiveButton(getString(R.string.dialog_done), null)
+            .setOnDismissListener {
+                etPhotoTitle.hideKeyboard()
+            }
+            .setCancelable(false)
+            .setView(dialogLayout)
+            .create()
+
+        dialog.setOnShowListener {
+            etPhotoTitle.showKeyboard()
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+                if (etPhotoTitle.text.isBlank()) {
+                    showToast(R.string.no_photo_title)
+                } else {
+                    presenter.onImagePicked(result, etPhotoTitle.text.toString())
+                    dialog.dismiss()
+                }
+            }
+        }
+        dialog.show()
+
     }
 
     override fun setItem(property: UiPropertyDetail) {

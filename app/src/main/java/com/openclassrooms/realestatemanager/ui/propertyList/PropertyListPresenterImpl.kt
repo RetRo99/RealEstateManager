@@ -23,7 +23,7 @@ class PropertyListPresenterImpl @Inject constructor(
         propertiesDisposable = propertyRepository.getProperties()
             .map {
                 it.map {
-                    UiProperty(it.id, it.type, it.price.toString(), it.address.city, it.photos[0])
+                    UiProperty(it.id, it.type, it.price.toString(), it.address.city, it.photos[0].photo)
                 }
             }
             .subscribeBy(

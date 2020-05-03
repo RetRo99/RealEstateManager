@@ -11,6 +11,7 @@ import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
 import com.openclassrooms.realestatemanager.utils.loadMap
 import com.openclassrooms.realestatemanager.ui.propertyAdd.adapter.PhotoAdapter
+import com.openclassrooms.realestatemanager.ui.propertyAdd.model.UiPropertyDetailsPhotoItem
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_property_details.*
 import javax.inject.Inject
@@ -52,7 +53,7 @@ class PropertyDetailsFragment : DaggerFragment(), PropertyDetailsView {
         Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
     }
 
-    override fun setPhotos(photos: List<String>) {
+    override fun setPhotos(photos: List<UiPropertyDetailsPhotoItem>) {
         rvHolder.visibility = View.VISIBLE
         rvPhotos.adapter = adapter
         adapter.setData(photos)

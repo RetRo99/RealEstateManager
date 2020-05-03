@@ -8,7 +8,7 @@ interface PropertyAddPresenter {
     fun onViewCreated(id: Int)
     fun onAddPropertyClicked()
     fun onAddPhotoClicked()
-    fun onImagePicked(result: PickResult?)
+    fun onImagePicked(result: PickResult?, title: String)
     fun onRemovePhotoClicked(position: Int)
     fun onDestroy()
 }

@@ -16,6 +16,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import com.firebase.ui.auth.AuthUI
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
 import com.openclassrooms.realestatemanager.R
 import com.openclassrooms.realestatemanager.base.LocationPermissionActivity
@@ -235,7 +236,7 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
     }
 
     override fun showLogOutDialog() {
-        AlertDialog.Builder(this)
+        MaterialAlertDialogBuilder(this)
             .setTitle(getString(R.string.dialog_logout_title))
             .setPositiveButton(getString(R.string.dialog_yes)) { _, _ ->
                 presenter.onLogoutConfirmed()

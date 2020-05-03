@@ -24,7 +24,7 @@ class SearchResultPresenterImpl @Inject constructor(
         searchDisposable = propertyRepository.getSearchProperties(searchParams)
             .map {
                 it.map {
-                    UiProperty(it.id, it.type, it.price.toString(), it.address.city, it.photos[0])
+                    UiProperty(it.id, it.type, it.price.toString(), it.address.city, it.photos[0].photo)
                 }
             }
             .subscribeBy(

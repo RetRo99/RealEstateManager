@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.android.gms.maps.model.LatLng
+import com.openclassrooms.realestatemanager.ui.propertyAdd.model.UiPropertyDetailsPhotoItem
 import com.openclassrooms.realestatemanager.ui.searchProperty.model.PropertySearchParams
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.squareup.moshi.JsonClass
@@ -32,13 +33,13 @@ data class UiPropertyDetail(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     @ColumnInfo(name = PHOTOS)
-    val photos: List<String> = listOf(),
+    val photos: List<UiPropertyDetailsPhotoItem> = listOf(),
     @ColumnInfo(name = LAT)
     val lat: Double = 0.0,
     @ColumnInfo(name = LNG)
     val lng: Double = 0.0,
     @ColumnInfo(name = IS_SOLD)
-    val isSold: Boolean = false ,
+    val isSold: Boolean = false,
     @ColumnInfo(name = SOLD_DATE)
     val soldDate: String = ""
 ) {

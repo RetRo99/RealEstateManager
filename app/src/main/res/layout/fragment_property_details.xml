@@ -228,7 +228,7 @@
                     android:orientation="horizontal"
                     android:textSize="16sp"
                     card_view:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_uri" />
+                    tools:listitem="@layout/item_photo" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

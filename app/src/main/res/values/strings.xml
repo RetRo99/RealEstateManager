@@ -78,5 +78,7 @@
     <string name="dialog_logout_title">Are you sure you want to logout?</string>
     <string name="dialog_yes">Yes</string>
     <string name="dialog_no">No</string>
+    <string name="dialog_done">Done</string>
+    <string name="no_photo_title">Please set the photo title</string>
 
 </resources>

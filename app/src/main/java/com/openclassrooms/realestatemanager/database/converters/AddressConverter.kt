@@ -6,19 +6,17 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 
 class AddressConverter {
+   private  val moshi: Moshi = Moshi.Builder()
+        .build()
+   private  val adapter: JsonAdapter<Address> = moshi.adapter(Address::class.java)
 
     @TypeConverter
     fun fromString(moshiString: String): Address {
-         val moshi: Moshi = Moshi.Builder()
-             .build()
-         val adapter: JsonAdapter<Address> = moshi.adapter(Address::class.java)
         return adapter.fromJson(moshiString)!!
     }
 
     @TypeConverter
     fun toString(address: Address): String {
-         val moshi: Moshi = Moshi.Builder().build()
-         val adapter: JsonAdapter<Address> = moshi.adapter(Address::class.java)
         return adapter.toJson(address)
     }
 
