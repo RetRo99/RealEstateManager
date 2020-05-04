@@ -37,7 +37,7 @@ class PropertyAddPresenterImpl @Inject constructor(
     }
 
     private fun updateProperty() {
-        notificationHelper.createUpdatedNotification()
+        notificationHelper.createUpdatedNotification(currentId)
         propertyRepository.updateProperty(property.copy(photos = photos, id = currentId))
             .subscribeBy(
                 onError = {
@@ -51,7 +51,7 @@ class PropertyAddPresenterImpl @Inject constructor(
     }
 
     private fun addProperty() {
-        notificationHelper.createAddedNotification()
+        notificationHelper.createAddedNotification(currentId)
         propertyRepository.addProperty(
             property.copy(
                 photos = photos

@@ -118,6 +118,7 @@ class MainActivity : LocationPermissionActivity(), NavigationView.OnNavigationIt
                     menu?.clear()
                     bottomNavigationView.visibility = View.GONE
                 }
+                R.id.photoFragment -> menu?.clear()
                 R.id.blankFragment -> getNavController().navigateUp()
                 else -> {
                     bottomNavigationView.visibility = View.GONE
