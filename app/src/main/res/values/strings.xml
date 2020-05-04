@@ -85,5 +85,6 @@
     <string name="channel_name">Notifier</string>
     <string name="channel_description">Tells you when you update or add new listing</string>
     <string name="notification_title_update">Listing succesfully updated</string>
+    <string name="dialog_photo">Pick Your image</string>
 
 </resources>

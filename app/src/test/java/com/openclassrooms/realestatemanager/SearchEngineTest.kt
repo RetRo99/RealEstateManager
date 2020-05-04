@@ -231,30 +231,7 @@ class SearchEngineTest {
         assertThat(result.size, `is`(1))
     }
 
-    @Test
-    fun roomParam() {
-        val searchParams = PropertySearchParams(
-            "Apartment",
-            "",
-            "",
-            listOf(),
-            "",
-            "",
-            "",
-            1,
-            "",
-            "",
-            false
-        )
-        val testObserver = TestObserver<List<UiPropertyDetail>>()
-
-        fakeRepository.getSearchProperties(searchParams)
-            .subscribe(testObserver)
-
-        val result = testObserver.values()[0]
-
-        assertThat(result.size, `is`(1))
     }
 
-}
+
 

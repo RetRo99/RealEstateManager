@@ -79,7 +79,7 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
     override fun showImageDialog() {
 
         val setup = PickSetup()
-            .setTitle("Pick Your image")
+            .setTitle(getString(R.string.dialog_photo))
 
         PickImageDialog.build(setup)
             .setOnPickResult {

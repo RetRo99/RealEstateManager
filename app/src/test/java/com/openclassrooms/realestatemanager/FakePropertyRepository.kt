@@ -3,6 +3,7 @@ package com.openclassrooms.realestatemanager
 import com.openclassrooms.realestatemanager.base.model.Address
 import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
 import com.openclassrooms.realestatemanager.repository.property.PropertyRepository
+import com.openclassrooms.realestatemanager.ui.propertyAdd.model.UiPropertyDetailsPhotoItem
 import com.openclassrooms.realestatemanager.ui.searchProperty.model.PropertySearchParams
 import io.reactivex.Completable
 import io.reactivex.Observable
@@ -23,8 +24,9 @@ class FakePropertyRepository : PropertyRepository {
             "20/04/2020",
             listOf("Doctor", "School", "Hobbies"),
             0,
-            listOf("photo 1", "photo 2"),
-            2.5, 2.5,
+            listOf(
+                UiPropertyDetailsPhotoItem("photo 1", "title 1")
+            ), 2.5, 2.5,
             false,
             "20/04/2020"
         ),
@@ -39,8 +41,10 @@ class FakePropertyRepository : PropertyRepository {
             "17/04/2020",
             listOf("Doctor", "School", "Hobbies"),
             0,
-            listOf("photo 1", "photo 2"),
-            2.5, 2.5,
+            listOf(
+                UiPropertyDetailsPhotoItem("photo 1", "title 1"),
+                UiPropertyDetailsPhotoItem("photo 2", "title 2")
+            ), 2.5, 2.5,
             false,
             "17/04/2020"
         ),
@@ -55,7 +59,11 @@ class FakePropertyRepository : PropertyRepository {
             "18/04/2020",
             listOf("Doctor", "School", "Hobbies", "Stores"),
             0,
-            listOf("photo 1", "photo 2", "photo 3"),
+            listOf(
+                UiPropertyDetailsPhotoItem("photo 1", "title 1"),
+                UiPropertyDetailsPhotoItem("photo 2", "title 2"),
+                UiPropertyDetailsPhotoItem("photo 3", "title 3")
+            ),
             2.5, 2.5,
             false,
             "18/04/2020"
