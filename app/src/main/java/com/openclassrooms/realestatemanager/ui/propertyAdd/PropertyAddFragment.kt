@@ -1,6 +1,7 @@
 package com.openclassrooms.realestatemanager.ui.propertyAdd
 
 import android.os.Bundle
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ import com.openclassrooms.realestatemanager.ui.propertyAdd.model.UiPropertyDetai
 import com.openclassrooms.realestatemanager.utils.Utils
 import com.openclassrooms.realestatemanager.utils.hideKeyboard
 import com.openclassrooms.realestatemanager.utils.showKeyboard
+import com.pouriahemati.thousandseparatorsedittext.NumberTextWatcher
 import com.vansuita.pickimage.bean.PickResult
 import com.vansuita.pickimage.bundle.PickSetup
 import com.vansuita.pickimage.dialog.PickImageDialog
@@ -62,6 +64,8 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
         adapter = PhotoAdapter(actionDelete = {
             presenter.onRemovePhotoClicked(it)
         })
+        etPrice.addTextChangedListener(NumberTextWatcher(etPrice));
+
         rvPhotos.adapter = adapter
 
         presenter.onViewCreated(args.id)
@@ -246,7 +250,7 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
             etSurface.text.toString(),
             etRooms.text.toString(),
             etDescription.text.toString(),
-            etPrice.text.toString().toDouble(),
+            etPrice.text.toString().replace(",", "").toDouble(),
             address,
             Utils.todayDate,
             interestPoints

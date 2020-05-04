@@ -99,6 +99,9 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
     implementation 'com.google.firebase:firebase-analytics:17.2.2'
 
+    implementation 'com.github.pouriaHemmati:Thousand-Separators-EditText:1.0.0'
+
+
     //For retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:2.7.1"

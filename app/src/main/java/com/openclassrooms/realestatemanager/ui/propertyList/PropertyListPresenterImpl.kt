@@ -4,6 +4,7 @@ import android.util.Log
 import com.openclassrooms.realestatemanager.repository.property.PropertyRepository
 import com.openclassrooms.realestatemanager.ui.MainViewPresenter
 import com.openclassrooms.realestatemanager.ui.propertyList.model.UiProperty
+import com.openclassrooms.realestatemanager.utils.Utils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
@@ -23,7 +24,8 @@ class PropertyListPresenterImpl @Inject constructor(
         propertiesDisposable = propertyRepository.getProperties()
             .map {
                 it.map {
-                    UiProperty(it.id, it.type, it.price.toString(), it.address.city, it.photos[0].photo)
+                    UiProperty(it.id, it.type,
+                        Utils.getEurCurrencyString(it.price), it.address.city, it.photos[0].photo)
                 }
             }
             .subscribeBy(

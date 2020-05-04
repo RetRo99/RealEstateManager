@@ -30,6 +30,8 @@ class PropertyAddPresenterImpl @Inject constructor(
     private val compositeDisposable = CompositeDisposable()
     private var currentId = 0
     private lateinit var property: UiPropertyDetail
+    private var isSold = false
+    private var soldDate = ""
 
     override fun onAddProperty(property: UiPropertyDetail) {
         this.property = propertyFormatter.format(property)
@@ -38,7 +40,7 @@ class PropertyAddPresenterImpl @Inject constructor(
 
     private fun updateProperty() {
         notificationHelper.createUpdatedNotification(currentId)
-        propertyRepository.updateProperty(property.copy(photos = photos, id = currentId))
+        propertyRepository.updateProperty(property.copy(photos = photos, id = currentId, isSold = isSold, soldDate = soldDate))
             .subscribeBy(
                 onError = {
                     view.showToast(R.string.error_something_wrong_address)
@@ -75,13 +77,13 @@ class PropertyAddPresenterImpl @Inject constructor(
             propertyRepository.getProperty(id)
                 .subscribeBy(
                     onSuccess = {
-                        Log.d("čič", "onSuccess")
+                        isSold = it.isSold
+                        soldDate = it.soldDate
                         view.setItem(it)
                         photos.addAll(it.photos)
                         view.setPhotos(photos)
                     },
                     onError = {
-                        Log.d("čič", "onError")
                         it.printStackTrace()
                     }
                 ).addTo(compositeDisposable)

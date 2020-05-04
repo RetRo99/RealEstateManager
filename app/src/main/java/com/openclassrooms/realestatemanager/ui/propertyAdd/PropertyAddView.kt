@@ -11,6 +11,5 @@ interface PropertyAddView {
     fun showImageDialog()
     fun setPhotos(photos: MutableList<UiPropertyDetailsPhotoItem>)
     fun showToast(@StringRes msg: Int)
-
     fun showContent()
 }

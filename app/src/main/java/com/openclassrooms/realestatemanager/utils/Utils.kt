@@ -3,15 +3,11 @@ package com.openclassrooms.realestatemanager.utils
 import android.content.Context
 import android.location.Location
 import android.net.ConnectivityManager
-import android.util.Log
-import android.widget.ImageView
-import com.bumptech.glide.Glide
 import com.google.android.gms.maps.model.LatLng
-import com.openclassrooms.realestatemanager.base.Constants.GOOGLE_KEY
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
-import java.net.URLEncoder.encode
 import java.text.DateFormat
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
@@ -70,6 +66,17 @@ object Utils {
         val firstDate = LocalDate.parse(first, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
         val secondDate = LocalDate.parse(second, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
         return firstDate.isAfter(secondDate)
+    }
+
+    fun getEurCurrencyString(price:Double, convertFromDollars: Boolean = false):String{
+        val format: NumberFormat = NumberFormat.getCurrencyInstance()
+        format.maximumFractionDigits = 0
+        format.currency = Currency.getInstance("EUR")
+        if(convertFromDollars) {
+            return  format.format(convertEuroToDollar(price.toInt()))
+        }
+        return format.format(price)
+
     }
 
 }

@@ -23,7 +23,15 @@ class PropertyRepositoryImpl @Inject constructor(
     }
 
     override fun updateProperty(property: UiPropertyDetail): Completable {
-        return propertyDao.updateProperty(property)
+        return api.getLocation(property.address.toString())
+            .map {
+                val location = it.results[0].geometry.location
+                property.copy(lat = location.lat, lng = location.lng)
+            }
+            .flatMapCompletable {
+                propertyDao.updateProperty(it)
+
+            }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }

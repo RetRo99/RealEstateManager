@@ -12,6 +12,7 @@ import com.openclassrooms.realestatemanager.base.model.UiPropertyDetail
 import com.openclassrooms.realestatemanager.utils.loadMap
 import com.openclassrooms.realestatemanager.ui.propertyAdd.adapter.PhotoAdapter
 import com.openclassrooms.realestatemanager.ui.propertyAdd.model.UiPropertyDetailsPhotoItem
+import com.openclassrooms.realestatemanager.utils.Utils
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_property_details.*
 import javax.inject.Inject
@@ -67,7 +68,7 @@ class PropertyDetailsFragment : DaggerFragment(), PropertyDetailsView {
             tvAgentType.text = agentName
             tvSurface.text = surface.toString()
             tvNumberOfRooms.text = numberOfRooms.toString()
-            tvPrice.text = price.toString()
+            tvPrice.text = Utils.getEurCurrencyString(price)
             tvDescription.text = description
             tvAddress.text = address.toString()
             tvPublishedDate.text = publishedDate
