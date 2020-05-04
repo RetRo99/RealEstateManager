@@ -86,5 +86,6 @@
     <string name="channel_description">Tells you when you update or add new listing</string>
     <string name="notification_title_update">Listing succesfully updated</string>
     <string name="dialog_photo">Pick Your image</string>
+    <string name="loan_menu">Canculate your loan</string>
 
 </resources>

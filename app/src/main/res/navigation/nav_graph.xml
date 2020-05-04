@@ -103,4 +103,9 @@
             android:name="photos"
             app:argType="com.openclassrooms.realestatemanager.ui.propertyAdd.model.UiPropertyDetailsPhotoItem[]" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_loan"
+        android:name="com.openclassrooms.realestatemanager.ui.loanFragment.LoanFragment"
+        android:label="fragment_loan"
+        tools:layout="@layout/fragment_loan" />
 </navigation>

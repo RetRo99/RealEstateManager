@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/private/var/folders/c3/235f58ss6v50ll2s74hyxvf00000gn/T/AppTranslocation/85809B62-FB73-4CCF-8BB8-B02A8ADC2D02/d/Android%20Studio%204.0%20Preview%203.app/Contents/plugins/android/lib/android.jar!/images/material/icons/materialicons/house/baseline_house_24.xml" />
+                                      <entry key="url" value="jar:file:/private/var/folders/c3/235f58ss6v50ll2s74hyxvf00000gn/T/AppTranslocation/DA9139EC-E525-4D9B-BB7A-0DCC43A04658/d/Android%20Studio%204.0%20Preview%203.app/Contents/plugins/android/lib/android.jar!/images/material/icons/materialicons/account_balance/baseline_account_balance_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,7 +28,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_house" />
+                            <entry key="outputName" value="ic_loan" />
                           </map>
                         </option>
                       </PersistentState>

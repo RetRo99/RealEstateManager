@@ -1,5 +1,7 @@
 package com.openclassrooms.realestatemanager.ui
 
+import com.openclassrooms.realestatemanager.ui.loanFragment.LoanFragment
+import com.openclassrooms.realestatemanager.ui.loanFragment.LoanFragmentModule
 import com.openclassrooms.realestatemanager.ui.map.MapFragment
 import com.openclassrooms.realestatemanager.ui.map.MapModule
 import com.openclassrooms.realestatemanager.ui.photoFragment.PhotoFragment
@@ -40,5 +42,8 @@ internal interface UiModule {
 
     @ContributesAndroidInjector(modules = [PhotoFragmentModule::class])
     fun contribPhotoFragmentInjector(): PhotoFragment
+
+    @ContributesAndroidInjector(modules = [LoanFragmentModule::class])
+    fun contribLoanFragmentInjector(): LoanFragment
 
 }
