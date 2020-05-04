@@ -7,7 +7,6 @@ import com.openclassrooms.realestatemanager.manager.notificationManager.Notifica
 import com.openclassrooms.realestatemanager.repository.property.PropertyRepository
 import com.openclassrooms.realestatemanager.ui.MainViewPresenter
 import com.openclassrooms.realestatemanager.ui.propertyAdd.model.UiPropertyDetailsPhotoItem
-import com.openclassrooms.realestatemanager.utils.PropertyFormatter
 import com.vansuita.pickimage.bean.PickResult
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
@@ -18,7 +17,6 @@ class PropertyAddPresenterImpl @Inject constructor(
     private val view: PropertyAddView,
     private val propertyRepository: PropertyRepository,
     private val parentPresenter: MainViewPresenter,
-    private val propertyFormatter : PropertyFormatter,
     private val notificationHelper:NotificationHelper
 
 ):PropertyAddPresenter {
@@ -34,7 +32,7 @@ class PropertyAddPresenterImpl @Inject constructor(
     private var soldDate = ""
 
     override fun onAddProperty(property: UiPropertyDetail) {
-        this.property = propertyFormatter.format(property)
+        this.property = property
         if (isEdit) updateProperty() else addProperty()
     }
 

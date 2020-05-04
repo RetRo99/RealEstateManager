@@ -64,7 +64,7 @@ class PropertyAddFragment : DaggerFragment(), PropertyAddView {
         adapter = PhotoAdapter(actionDelete = {
             presenter.onRemovePhotoClicked(it)
         })
-        etPrice.addTextChangedListener(NumberTextWatcher(etPrice));
+        etPrice.addTextChangedListener(NumberTextWatcher(etPrice))
 
         rvPhotos.adapter = adapter
 

@@ -29,4 +29,18 @@ class UtilsTest {
         assertThat(Utils.todayDate, `is`(formattedDate))
 
     }
+
+    @Test
+    fun testIsFirstDateBeforeSecond(){
+        val result = Utils.isFirstDateAfterSecond("17/04/2020", "18/04/2020")
+        assertThat(result, `is`(false))
+
+    }
+
+    @Test
+    fun isFirstDateBeforeSecond(){
+        val result = Utils.isFirstDateAfterSecond("18/04/2020", "15/04/2020")
+        assertThat(result, `is`(true))
+
+    }
 }

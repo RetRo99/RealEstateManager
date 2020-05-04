@@ -87,5 +87,14 @@
     <string name="notification_title_update">Listing succesfully updated</string>
     <string name="dialog_photo">Pick Your image</string>
     <string name="loan_menu">Canculate your loan</string>
+    <string name="loan_in_total">In total you will pay</string>
+    <string name="loan_per_month">Per month you will pay</string>
+    <string name="loan_amount_to_get">Amount you would like to get</string>
+    <string name="loan_interest_rate">Interest rate</string>
+    <string name="interest_no_data">Please enter all needed data</string>
+    <plurals name="interest_rate_years">
+        <item quantity="one">%d year</item>
+        <item quantity="other">%d years</item>
+    </plurals>
 
 </resources>

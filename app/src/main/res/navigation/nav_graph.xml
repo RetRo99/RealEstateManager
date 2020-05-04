@@ -106,6 +106,6 @@
     <fragment
         android:id="@+id/navigation_loan"
         android:name="com.openclassrooms.realestatemanager.ui.loanFragment.LoanFragment"
-        android:label="fragment_loan"
+        android:label="Real Estate Manager"
         tools:layout="@layout/fragment_loan" />
 </navigation>
